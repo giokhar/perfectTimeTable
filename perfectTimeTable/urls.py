@@ -20,5 +20,5 @@ from minConflict import views as mcViews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('website.urls'))
+    url(r'^', include('website.urls'))
 ]
