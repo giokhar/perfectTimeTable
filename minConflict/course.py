@@ -19,6 +19,14 @@ class Course():
 		self.notAvailableAt = []
 		self.finalSchedule = []
 
+	#Returns level of the course
+	def getLevel(self):
+		return self.level
+
+	#Returns importance index
+	def getImportanceIndex(self):
+		return self.importanceIndex
+
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(numEnrolled)
