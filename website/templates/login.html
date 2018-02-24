@@ -12,11 +12,13 @@
 {% block content %}
     <div id="login-page" class="row">
       <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form">
-          <div class="row">
+        <form class="login-form" action="{% url 'index' %}" method="post">
+          <div class="csrf">{% csrf_token %}</div>
+          <!-- <div class="row">
             <div class="input-field col s12 center">
               <img src="{% static 'images/logo/login-logo.png' %}" alt="" class="circle responsive-img valign profile-image-login">
-              <p class="center login-form-text">Perfect Timetable</p>
+              <p class="center login-form-text">Perfect Timetable
+              </p>
             </div>
           </div>
           <div class="row margin">
@@ -38,10 +40,11 @@
               <input type="checkbox" id="remember-me" />
               <label for="remember-me">Remember me</label>
             </div>
-          </div>
+          </div> -->
+          {{ form }}
           <div class="row">
             <div class="input-field col s12">
-              <a href="index.html" class="btn waves-effect waves-light col s12 blue darken-2">Login</a>
+              <input type="submit" class="btn waves-effect waves-light col s12 blue darken-2" value="Login">
             </div>
           </div>
           <div class="row">

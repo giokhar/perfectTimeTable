@@ -9,4 +9,8 @@ def login(request):
 
 # @login_required(login_url='/login/')
 def admin(request):
-	return render(request, 'index.html')
+	# if request.user.is_authenticated:
+	if True:
+		return render(request, 'index.html')
+	else:
+		return redirect('login')
