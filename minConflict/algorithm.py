@@ -1,6 +1,6 @@
 from data import data, pretty_data
+from helper import *
+from course import Course 
+from student import Student 
 
-for i in data['courses']:
-	print(i)
-
-# print(pretty_data)
+if __name__ == '__main__':
