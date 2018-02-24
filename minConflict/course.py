@@ -29,7 +29,7 @@ class Course():
 
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
-		self.importanceIndex += weight / math.sqrt(numEnrolled)
+		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
 
 	#Is given a list of the tuples>>
 	#Example(lst = [('M', 08:00:00(time object))])
