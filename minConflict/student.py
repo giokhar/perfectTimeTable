@@ -1,6 +1,7 @@
 '''
 Description:
 '''
+
 class Student():
 	def __init__(self, ID, firstName, lastName, year, major, prefferedCourses):
 		self.ID = ID

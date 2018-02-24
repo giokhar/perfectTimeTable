@@ -26,6 +26,10 @@ class Course():
 	#Returns importance index
 	def getImportanceIndex(self):
 		return self.importanceIndex
+		
+	#Returns the title of the course
+	def getTitle(self):
+		return self.title
 
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
@@ -35,4 +39,5 @@ class Course():
 	#Example(lst = [('M', 08:00:00(time object))])
 	def excludeFollowingTimes(self, listOfNotAvailable):
 		self.notAvailableAt += listOfNotAvailable
+
 
