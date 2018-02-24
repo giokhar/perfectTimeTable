@@ -5,7 +5,7 @@ import math
 from datetime import time
 
 class Course():
-	def __init__(self, ID, courseNumber, title, duration, frequency, proffessor, level, importanceIndex = 0, numEnrolled):
+	def __init__(self, ID, courseNumber, title, duration, frequency, proffessor, level, numEnrolled):
 		
 		self.id = ID
 		self.courseNumber = courseNumber
@@ -14,7 +14,7 @@ class Course():
 		self.frequency = frequency
 		self.proffessor = proffessor
 		self.level = level #3 = 300 level course
-		self.importanceIndex = importanceIndex #geometric mean of weights given by students
+		self.importanceIndex = 0 #geometric mean of weights given by students
 		self.numEnrolled = numEnrolled #actual number of students enrolled
 		self.notAvailableAt = []
 		self.finalSchedule = []
