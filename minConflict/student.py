@@ -3,15 +3,17 @@ Description:
 '''
 
 class Student():
-	def __init__(self, ID, firstName, lastName, year, major, prefferedCourses):
-		self.ID = ID
+	def __init__(self, ID, studentId, firstName, lastName, year, major, preferredCourses):
+		
+		self.ID = ID,
+		self.studentId = studentId
 		self.firstName = firstName
 		self.lastName = lastName
 		self.year = year # class year
 		self.major = major
-		# #prefferedCourses: list of Course objects. Each student arranges courses in order of preference.
+		# #preferredCourses: list of Course objects. Each student arranges courses in order of preference.
 		# In the given list the course at the 0 index is the most important one.
-		self.prefferedCourses = prefferedCourses
+		self.preferredCourses = preferredCourses
 
-	def getPrefferedCourses(self):
-		return self.prefferedCourses
+	def getPreferredCourses(self):
+		return self.preferredCourses
