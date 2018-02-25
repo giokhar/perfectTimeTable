@@ -25,7 +25,7 @@ SECRET_KEY = '!!dtb5x*73l8xn6ue0p6&^@4qeuoced2gkhrgp&e_16r4#zipa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -77,8 +77,11 @@ WSGI_APPLICATION = 'perfectTimeTable.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'perfect_timetable',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
     }
 }
 
