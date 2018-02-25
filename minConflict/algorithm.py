@@ -53,4 +53,4 @@ if __name__ == '__main__':
 	cursor = connection.cursor()
 	cursor.execute("SELECT * FROM students WHERE id < 5")
 
-	print(cursor.fetchone())
+	cursor.fetchone()
