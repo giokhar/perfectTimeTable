@@ -7,7 +7,7 @@ from datetime import time
 class Course():
 	def __init__(self, ID, courseNumber, title, duration, frequency, proffessor, level, numEnrolled):
 		
-		self.id = ID
+		self.ID = ID
 		self.courseNumber = courseNumber
 		self.title = title
 		self.duration = duration
