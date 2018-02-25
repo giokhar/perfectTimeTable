@@ -4,6 +4,18 @@ from heapq import heappop
 from course import Course
 from student import Student 
 
+# def scheduller(coursesPriorityQueue):
+# 	possWeekList = [('M', 'W', 'F'), ('T', "R")]
+
+# 	while len(coursesPriorityQueue) != 0:
+# 		nextCourse = heappop(coursesPriorityQueue)
+
+# 		for nextDaysTuple in possWeekList:
+# 			if nextCourse.getFrequency() == len(nextDaysTuple):
+# 				for nextDay in nextDaysTuple:
+# 					for nextHour in range(8,13):
+# 						if isAvailableAt(nextCourse, nextHour, )
+
 if __name__ == '__main__':
 	
 	C1 = Course("ID",11, "C1", 1, 3, "ajika chavana", 2, 3)
