@@ -1,9 +1,7 @@
-from data import data, pretty_data
-from helper import *
-from heapq import heappop
-from course import Course
-from student import Student
-# Importing DB
+# from data import data, pretty_data
+from minConflict.helper import *
+
+# Import DB
 from django.db import connection
 
 # def scheduller(coursesPriorityQueue):
@@ -17,6 +15,12 @@ from django.db import connection
 # 				for nextDay in nextDaysTuple:
 # 					for nextHour in range(8,13):
 # 						if isAvailableAt(nextCourse, nextHour, )
+
+def my_custom_sql():
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM students")
+    row = cursor.fetchone()
+    return row
 
 if __name__ == '__main__':
 	
@@ -46,11 +50,5 @@ if __name__ == '__main__':
 
 	createTimeConflictDicts(lstStudents)
 
-	for nextCourse in lstCourses:
-		print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())
-
-
-	cursor = connection.cursor()
-	cursor.execute("SELECT * FROM students WHERE id < 5")
-
-	cursor.fetchone()
+	# for nextCourse in lstCourses:
+	# 	print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())

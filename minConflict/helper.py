@@ -1,6 +1,7 @@
-from student import Student
-from course import Course
-from heapq import heappush
+from minConflict.student import Student
+from minConflict.course import Course
+from heapq import heappush, heappop
+
 #Is given set of Classes and Students
 def createCoursesPriorityQueue(lstCourses, lstStudents):
 	for nextStudent in lstStudents:
