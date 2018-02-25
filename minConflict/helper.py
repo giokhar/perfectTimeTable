@@ -21,3 +21,15 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 		heappush(coursesPriorityQueue, (finalIndex, nextCourse.title))
 
 	return coursesPriorityQueue
+
+#Creates a dictionary for each Course object where the key is
+#the courseNumber and the value is the number of time conflicts with 
+#the course associated with the key. 
+def createTimeConflictDicts(lstStudents):
+	for nextStudent in lstStudents:
+		for nextCourse in nextStudent.getPrefferedCourses():
+			for otherCourse in nextStudent.getPrefferedCourses():
+				if nextCourse != otherCourse:
+					nextCourse.addNewConflict(otherCourse.getCourseNumber())
+
+
