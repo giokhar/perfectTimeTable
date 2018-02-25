@@ -5,7 +5,7 @@ from heapq import heappush
 def createCoursesPriorityQueue(lstCourses, lstStudents):
 	for nextStudent in lstStudents:
 		weight = 10
-		for nextCourse in nextStudent.getPreferredCourses():
+		for nextCourse in nextStudent.getPrefferedCourses():
 			nextCourse.incrementImportanceIndex(weight)
 			weight -= 1
 
@@ -27,9 +27,8 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 #the course associated with the key. 
 def createTimeConflictDicts(lstStudents):
 	for nextStudent in lstStudents:
-		for nextCourse in nextStudent.getPreferredCourses():
-			for otherCourse in nextStudent.getPreferredCourses():
+		for nextCourse in nextStudent.getPrefferedCourses():
+			for otherCourse in nextStudent.getPrefferedCourses():
 				if nextCourse != otherCourse:
 					nextCourse.addNewConflict(otherCourse.getCourseNumber())
-
 

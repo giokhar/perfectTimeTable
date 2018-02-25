@@ -28,6 +28,9 @@ class Course():
 		except:
 			self.timeConflictDict[nextCourseNumber] = 1
 
+	def getFrequency(self):
+		return self.frequency
+	
 	def getTimeConflictDict(self):
 		return self.timeConflictDict
 

@@ -6,6 +6,18 @@ from student import Student
 # Importing DB
 from django.db import connection
 
+# def scheduller(coursesPriorityQueue):
+# 	possWeekList = [('M', 'W', 'F'), ('T', "R")]
+
+# 	while len(coursesPriorityQueue) != 0:
+# 		nextCourse = heappop(coursesPriorityQueue)
+
+# 		for nextDaysTuple in possWeekList:
+# 			if nextCourse.getFrequency() == len(nextDaysTuple):
+# 				for nextDay in nextDaysTuple:
+# 					for nextHour in range(8,13):
+# 						if isAvailableAt(nextCourse, nextHour, )
+
 if __name__ == '__main__':
 	
 	C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
@@ -34,8 +46,9 @@ if __name__ == '__main__':
 
 	createTimeConflictDicts(lstStudents)
 
-	# for nextCourse in lstCourses:
-	# 	print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())
+	for nextCourse in lstCourses:
+		print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())
+
 
 	cursor = connection.cursor()
 	cursor.execute("SELECT * FROM students WHERE id < 5")
