@@ -1,6 +1,6 @@
 from student import Student
 from course import Course
-import heapq
+from heapq import heappush
 #Is given set of Classes and Students
 def createCoursesPriorityQueue(lstCourses, lstStudents):
 	for nextStudent in lstStudents:
@@ -18,6 +18,6 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 		#can be returned from the priority queue as the first element.
 		finalIndex = 1 / (nextCourse.getImportanceIndex() * levelImportanceIndex)
 
-		heapq.heappush(coursesPriorityQueue, (finalIndex, nextCourse.title))
+		heappush(coursesPriorityQueue, (finalIndex, nextCourse.title))
 
 	return coursesPriorityQueue
