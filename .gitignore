@@ -1,8 +1,8 @@
 # .gitignore by Giorgi
 
-/minConflict/__pycache__/*
-/perfectTimeTable/__pycache__/*
-/website/__pycache__/*
+/minConflict/__pycache__/*.pyc
+/perfectTimeTable/__pycache__/*.pyc
+/website/__pycache__/*.pyc
 
 ### OSX ###
 .DS_Store
