@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 # import rest_framework
 from rest_framework.views import APIView
@@ -11,6 +11,10 @@ from minConflict.serializers import *
 # import my algorithm
 from minConflict.algorithm import *
 
+
+def api(request):
+	result = getData(request, "api/students")
+	return HttpResponse(result)
 
 class CourseList(APIView):
 	"""

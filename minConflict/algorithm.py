@@ -4,6 +4,9 @@ from minConflict.helper import *
 # Import DB
 from django.db import connection
 
+from urllib.request import urlopen
+import json
+
 # def scheduller(coursesPriorityQueue):
 # 	possWeekList = [('M', 'W', 'F'), ('T', "R")]
 
@@ -21,6 +24,16 @@ def my_custom_sql():
     cursor.execute("SELECT * FROM students")
     row = cursor.fetchone()
     return row
+
+def getData(request, slug):
+	host 		= "http://" + request.get_host() + "/"
+	my_format 	= "/?format=json"
+	url 		= host + slug + my_format
+
+	jsonurl = urlopen(url)
+	data = json.loads(jsonurl.read())
+
+	return data
 
 if __name__ == '__main__':
 	
