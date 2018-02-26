@@ -24,14 +24,14 @@
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">person_outline</i>
-              <input id="username" type="text">
-              <label for="username" class="center-align">Username</label>
+              {{ form.email }}
+              <label for="username" class="center-align">Email</label>
             </div>
           </div>
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">lock_outline</i>
-              <input id="password" type="password">
+              {{ form.password }}
               <label for="password">Password</label>
             </div>
           </div>
@@ -41,7 +41,6 @@
               <label for="remember-me">Remember me</label>
             </div>
           </div>
-          {{ form }}
           <div class="row">
             <div class="input-field col s12">
               <input type="submit" class="btn waves-effect waves-light col s12 blue darken-2" value="Login">
