@@ -1,14 +1,24 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 
+# import rest_framework
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+# import my models
+from .models import Course as CourseModel, Student as StudentModel
+from .serializers import CourseSerializer, StudentSerializer
+# import my algorithm
 from minConflict.algorithm import *
 
-# Create your views here.
 
-def api(request):
+class CourseList(APIView):
 
-	result = my_custom_sql()
+	def get(self, request):
+		courses = CourseModel.objects.all()
+		serializer = CourseSerializer(courses, many = True)
 
-	print(result)
+		return Response(serializer.data)
 
-	return HttpResponse(result)
+	# def post(self):
+	# 	pass
