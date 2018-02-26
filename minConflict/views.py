@@ -13,9 +13,8 @@ from minConflict.algorithm import *
 
 
 def api(request):
-	# result = getData(request, "api/students")
-	result = retrieve()
-	return HttpResponse(result)
+	result = getData(request, "api/students")
+	return render(request, "index.html", {"result": result})
 
 class CourseList(APIView):
 	"""
