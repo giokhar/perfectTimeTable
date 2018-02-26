@@ -14,8 +14,8 @@ class Course(models.Model):
 	final_schedule 	= models.TextField(blank = True)
 
 
-	def __str__(self): # Default value of student when being called in main
-		return self.title
+	def __str__(self): # Value that we see in DJANGO ADMIN
+		return self.course_number + " - " + self.title + "(CRN: " + str(self.crn) + ") - " + self.professor  
 
 	class Meta:
 		db_table = "courses" # Table name in DB
@@ -33,7 +33,7 @@ class Student(models.Model):
 	final_courses 		= models.TextField(blank = True)
 
 
-	def __str__(self): # Default value of student when being called in main
+	def __str__(self): # Value that we see in DJANGO ADMIN
 		return self.firstname + " " + self.lastname + " (student_id: " + str(self.student_id) + ")"
 
 	class Meta:
