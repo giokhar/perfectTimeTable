@@ -77,12 +77,23 @@ WSGI_APPLICATION = 'perfectTimeTable.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'perfect_timetable',
+    #     'USER': 'root',
+    #     'PASSWORD': '12345678',
+    #     'HOST': 'localhost',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'perfect_timetable',
-        'USER': 'root',
+        'ENGINE':   'django.db.backends.mysql',
+        'NAME':     'giokharc_perfect_timetable',
+        'USER':     'giokharc_root',
         'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'HOST':     'giokhar.com',
+        'PORT':     '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 

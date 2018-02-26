@@ -34,7 +34,7 @@ class Student(models.Model):
 
 
 	def __str__(self): # Default value of student when being called in main
-		return self.firstname + " " + self.lastname
+		return self.firstname + " " + self.lastname + " (student_id: " + str(self.student_id) + ")"
 
 	class Meta:
 		db_table = "students" # Table name in DB

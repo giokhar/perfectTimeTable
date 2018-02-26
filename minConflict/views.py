@@ -14,7 +14,7 @@ from minConflict.algorithm import *
 
 class CourseList(APIView):
 	"""
-	List all the courses using RESTapi
+	List all the courses as a RESTapi
 	"""
 	def get(self, request):
 		courses = CourseModel.objects.all() # CourseModel located in serializers
@@ -24,7 +24,7 @@ class CourseList(APIView):
 
 class CourseDetail(APIView):
 	"""
-	Show details for each course in RESTapi
+	Show details for each course as a RESTapi
 	"""
 	def get_object(self, pk):
 		try:
@@ -33,6 +33,31 @@ class CourseDetail(APIView):
 			raise Http404()
 
 	def get(self, request, pk):
-		snippet = self.get_object(pk)
-		serializer = CourseSerializer(snippet)
+		course = self.get_object(pk)
+		serializer = CourseSerializer(course)
+		return Response(serializer.data)
+
+class StudentList(APIView):
+	"""
+	List all the students as a RESTapi
+	"""
+	def get(self, request):
+		students = StudentModel.objects.all() # CourseModel located in serializers
+		serializer = StudentSerializer(students, many = True)
+
+		return Response(serializer.data)
+
+class StudentDetail(APIView):
+	"""
+	Show details for each student as a RESTapi
+	"""
+	def get_object(self, pk):
+		try:
+			return StudentModel.objects.get(pk=pk)
+		except StudentModel.DoesNotExist:
+			raise Http404()
+
+	def get(self, request, pk):
+		student = self.get_object(pk)
+		serializer = StudentSerializer(student)
 		return Response(serializer.data)
