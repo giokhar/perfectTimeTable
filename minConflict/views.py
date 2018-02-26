@@ -5,9 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-# import my models
-from .models import Course as CourseModel, Student as StudentModel
-from .serializers import CourseSerializer, StudentSerializer
+# import my serializers & models
+from minConflict.serializers import *
 # import my algorithm
 from minConflict.algorithm import *
 
@@ -15,7 +14,7 @@ from minConflict.algorithm import *
 class CourseList(APIView):
 
 	def get(self, request):
-		courses = CourseModel.objects.all()
+		courses = CourseModel.objects.all() # CourseModel located in serializers
 		serializer = CourseSerializer(courses, many = True)
 
 		return Response(serializer.data)
