@@ -14,10 +14,12 @@
       <div class="col s12 z-depth-4 card-panel">
         <form class="login-form" action="" method="post">{% csrf_token %}
           <div class="row">
-            <div class="input-field col s12 center">
-              <img src="{% static 'images/logo/login-logo.png' %}" alt="" class="circle responsive-img valign profile-image-login">
-              <p class="center login-form-text">Perfect Timetable</p>
-            </div>
+            <a href="{% url 'index' %}">
+              <div class="input-field col s12 center">
+                <img src="{% static 'images/logo/login-logo.png' %}" alt="" class="circle responsive-img valign profile-image-login">
+                <p class="center login-form-text">Perfect Timetable</p>
+              </div>
+            </a>
           </div>
           {% if form.errors %}
           <div id="card-alert" class="card red lighten-5">
@@ -63,8 +65,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m12 l12">
-              <p class="margin medium-small"><a href="{% url 'register' %}">Register Now</a></p>
+            <div class="input-field col s6 m6 l6">
+              <p class="margin medium-small"><a href="{% url 'index' %}">Website</a></p>
+            </div>
+            <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="{% url 'register' %}">Register Now</a></p>
             </div>
           </div>
         </form>
