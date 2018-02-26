@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.decorators import login_required
 
 from website.forms import UserLoginForm, UserRegisterForm
 
 # Create your views here.
 
 def index_view(request):
+	return render(request, 'home.html')
+
+@login_required(login_url='/login')
+def dashboard_view(request):
 	return render(request, 'index.html')
+
 
 def login_view(request):
 	""" log in user controller"""
@@ -32,16 +38,13 @@ def register_view(request):
 		password = form.cleaned_data.get('password1')
 		user.set_password(password)
 		user.save()
-		new_user = authenticate(username = user.username, password = user.password)
-		login(request, new_user)
+		login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('dashboard')
 
 	return render(request, 'register.html', {"form": form})
 
+@login_required(login_url='/login')
 def logout_view(request):
 	""" log out user controller"""
 	logout(request)
 	return redirect('index')
-
-def dashboard_view(request):
-	return render(request, 'index.html')

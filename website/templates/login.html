@@ -22,10 +22,13 @@
           {% if form.errors %}
           <div id="card-alert" class="card red lighten-5">
               <div class="card-content red-text">
-                {% for error in form.non_field_errors %}
-                  <p>{{ error }}</p>
+                <b>ERROR:</b><br>
+                {% for field in form.visible_fields %}
+                  {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
                 {% endfor %}
-                {% for error in form.password.errors %}
+                {% for error in form.non_field_errors %}
                   <p>{{ error }}</p>
                 {% endfor %}
                 <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
