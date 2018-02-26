@@ -39,7 +39,7 @@ class UserRegisterForm(forms.ModelForm):
 	password1 	= forms.CharField(widget=forms.PasswordInput)
 	password2 	= forms.CharField(widget=forms.PasswordInput)
 
-	def clean(self):
+	def clean(self, *args, **kwargs):
 
 		username  = self.cleaned_data.get("username")
 		email     = self.cleaned_data.get("email")
@@ -54,3 +54,5 @@ class UserRegisterForm(forms.ModelForm):
 
 		if password1 and password2 and password1 != password2:
 			raise forms.ValidationError("Passwords don't match")
+
+		return super(UserRegisterForm, self).clean(*args, **kwargs)

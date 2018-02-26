@@ -23,8 +23,14 @@ def login_view(request):
 	return render(request, 'login.html', {"form": form})
 
 def register_view(request):
-
+	print(request.user.is_authenticated())
 	form = UserRegisterForm(request.POST or None)
+	if form.is_valid():
+		user = form.save(commit = False)
+		password = form.cleaned_data.get('password1')
+		user.set_password(password)
+		user.save()
+		login(request, user)
 
 	return render(request, 'register.html', {"form": form})
 
