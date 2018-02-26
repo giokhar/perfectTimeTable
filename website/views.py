@@ -9,19 +9,29 @@ def index_view(request):
 	return render(request, 'index.html')
 
 def login_view(request):
+	""" log in user controller"""
 	form = UserLoginForm(request.POST or None)
 
 	if form.is_valid():
-		email 		= form.cleaned_data.get("email")
+		username	= form.cleaned_data.get("username")
 		password 	= form.cleaned_data.get("password")
 
+		user = authenticate(username = username, password = password)
+		login(request, user)
+		print(request.user.is_authenticated())
+		#redirect
 	return render(request, 'login.html', {"form": form})
 
 def register_view(request):
+
+	
+
 	return render(request, 'register.html')
 
 def logout_view(request):
-	return render(request, 'login.html')
+	""" log out user controller"""
+	logout(request)
+	return redirect('index')
 
 def dashboard_view(request):
 	return render(request, 'index.html')

@@ -7,25 +7,38 @@
 <link href="{% static 'css/layouts/page-center.css' %}" type="text/css" rel="stylesheet">
 {% endblock %}
 
-{% block theme %}<body class="blue darken-2">{% endblock %}
+{% block theme %}<body class="blue accent-2">{% endblock %}
 
 {% block content %}
     <div id="login-page" class="row">
       <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form" action="{% url 'index' %}" method="post">
-          <div class="csrf">{% csrf_token %}</div>
+        <form class="login-form" action="" method="post">{% csrf_token %}
           <div class="row">
             <div class="input-field col s12 center">
               <img src="{% static 'images/logo/login-logo.png' %}" alt="" class="circle responsive-img valign profile-image-login">
-              <p class="center login-form-text">Perfect Timetable
-              </p>
+              <p class="center login-form-text">Perfect Timetable</p>
             </div>
           </div>
+          {% if form.errors %}
+          <div id="card-alert" class="card red lighten-5">
+              <div class="card-content red-text">
+                {% for error in form.non_field_errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+                {% for error in form.password.errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+                <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                </button>
+              </div>
+          </div>
+          {% endif %}
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">person_outline</i>
-              {{ form.email }}
-              <label for="username" class="center-align">Email</label>
+              {{ form.username }}
+              <label for="username" class="center-align">Username</label>
             </div>
           </div>
           <div class="row margin">
@@ -43,15 +56,12 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input type="submit" class="btn waves-effect waves-light col s12 blue darken-2" value="Login">
+              <button type="submit" class="btn waves-effect waves-light col s12 blue accent-2">Login</button>
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6 m6 l6">
-              <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
-            </div>
-            <div class="input-field col s6 m6 l6">
-              <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>
+            <div class="input-field col s12 m12 l12">
+              <p class="margin medium-small"><a href="{% url 'register' %}">Register Now</a></p>
             </div>
           </div>
         </form>
