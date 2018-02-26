@@ -11,7 +11,7 @@ def index_view(request):
 
 @login_required(login_url='/login')
 def dashboard_view(request):
-	return render(request, 'index.html')
+	return render(request, 'dashboard.html')
 
 
 def login_view(request):
