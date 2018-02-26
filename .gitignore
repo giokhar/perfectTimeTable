@@ -1,4 +1,8 @@
-# Created by https://www.gitignore.io
+# .gitignore by Giorgi
+
+minConflict/__pycache__/*
+perfectTimeTable/__pycache__/*
+website/__pycache__/*
 
 ### OSX ###
 .DS_Store
@@ -26,7 +30,7 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
-**/__pycache__/
+__pycache__/
 *.py[cod]
 
 # C extensions
