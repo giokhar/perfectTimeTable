@@ -18,19 +18,23 @@ def login_view(request):
 
 		user = authenticate(username = username, password = password)
 		login(request, user)
-		print(request.user.is_authenticated())
-		#redirect
+		# print(request.user.is_authenticated())
+
+		return redirect('dashboard')
+
 	return render(request, 'login.html', {"form": form})
 
 def register_view(request):
-	print(request.user.is_authenticated())
+	# print(request.user.is_authenticated())
 	form = UserRegisterForm(request.POST or None)
 	if form.is_valid():
 		user = form.save(commit = False)
 		password = form.cleaned_data.get('password1')
 		user.set_password(password)
 		user.save()
-		login(request, user)
+		new_user = authenticate(username = user.username, password = user.password)
+		login(request, new_user)
+		return redirect('dashboard')
 
 	return render(request, 'register.html', {"form": form})
 
