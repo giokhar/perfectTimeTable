@@ -1,8 +1,8 @@
 # from data import data, pretty_data
-from minConflict.helper import *
+from helper import *
 
 # Import DB
-from django.db import connection
+# from django.db import connection
 
 from urllib.request import urlopen
 import json
@@ -73,5 +73,5 @@ if __name__ == '__main__':
 
 	createTimeConflictDicts(lstStudents)
 
-	# for nextCourse in lstCourses:
-	# 	print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())
+	for nextCourse in lstCourses:
+		print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())

@@ -1,5 +1,5 @@
-from minConflict.student import Student
-from minConflict.course import Course
+from student import Student
+from course import Course
 from heapq import heappush, heappop
 
 #Is given set of Classes and Students
