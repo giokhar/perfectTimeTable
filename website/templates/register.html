@@ -19,6 +19,24 @@
               <p class="center">Join to our community now !</p>
             </div>
           </div>
+          {% if form.errors %}
+          <div id="card-alert" class="card red lighten-5">
+              <div class="card-content red-text">
+                <b>ERROR:</b><br>
+                {% for field in form.visible_fields %}
+                  {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+                <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                </button>
+              </div>
+          </div>
+          {% endif %}
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">person_outline</i>
@@ -31,21 +49,23 @@
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">email</i>
               <!-- <input id="email" type="email"> -->
-              {{ form.username }}
+              {{ form.email }}
               <label for="email" class="center-align">Email</label>
             </div>
           </div>
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">lock_outline</i>
-              <input id="password" type="password">
+              <!-- <input id="password" type="password"> -->
+              {{ form.password1 }}
               <label for="password">Password</label>
             </div>
           </div>
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">lock_outline</i>
-              <input id="password-again" type="password">
+              <!-- <input id="password-again" type="password"> -->
+              {{ form.password2 }}
               <label for="password-again">Password again</label>
             </div>
           </div>

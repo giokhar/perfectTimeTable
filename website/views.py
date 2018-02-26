@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
 
-from website.forms import UserLoginForm
+from website.forms import UserLoginForm, UserRegisterForm
 
 # Create your views here.
 
@@ -24,9 +24,9 @@ def login_view(request):
 
 def register_view(request):
 
-	
+	form = UserRegisterForm(request.POST or None)
 
-	return render(request, 'register.html')
+	return render(request, 'register.html', {"form": form})
 
 def logout_view(request):
 	""" log out user controller"""
