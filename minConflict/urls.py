@@ -4,7 +4,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from minConflict import views
 
 urlpatterns = [
-	url(r'^courses/', views.CourseList.as_view(), name='api'),
+	url(r'^courses/$', views.CourseList.as_view(), name='course_api'),
+	url(r'^courses/(?P<pk>[0-9]+)/$', views.CourseDetail.as_view(), name='course_detail_api'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
