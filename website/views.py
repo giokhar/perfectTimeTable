@@ -16,6 +16,9 @@ def dashboard_view(request):
 
 def login_view(request):
 	""" log in user controller"""
+
+	next_page = request.GET.get("next")
+
 	form = UserLoginForm(request.POST or None)
 
 	if form.is_valid():
@@ -25,6 +28,9 @@ def login_view(request):
 		user = authenticate(username = username, password = password)
 		login(request, user)
 		# print(request.user.is_authenticated())
+
+		if next_page:
+			return redirect(next_page)
 
 		return redirect('dashboard')
 
