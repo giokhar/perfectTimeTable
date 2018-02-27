@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 from website.forms import UserLoginForm, UserRegisterForm
 
+from website.dashboard.main import Dashboard
+
 # Create your views here.
 
 def index_view(request):
@@ -11,6 +13,12 @@ def index_view(request):
 
 @login_required(login_url='/login')
 def dashboard_view(request):
+	
+	dash = Dashboard(request.user)
+
+	print(dash.getEmail())
+
+
 	return render(request, 'dashboard.html')
 
 
