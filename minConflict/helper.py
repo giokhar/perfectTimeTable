@@ -38,29 +38,14 @@ def createTimeConflictDicts(lstStudents):
 #are if the same proffessor teaches two different courses.
 def createCoursesConflictDict(lstCourses):
 	#This is a temporary dictionary, that stores 
-	#proffessor:list of unique N of the classes he/she teaches -- as a key value pair
+	#proffessor:list of the classes he/she teaches -- as a key value pair
 	tempDict = {}
 
 	for nextCourse in lstCourses:
 		nextProff = nextCourse.getProffessor()
 		try:
 			#if there is something associated with this key.
-			tempDict[nextProff].append(nextCourse.getCourseNumber())
+			tempDict[nextProff].append(nextCourse)
 		except:
-			tempDict[nextProff] = [nextCourse.getCourseNumber()]
+			tempDict[nextProff] = [nextCourse]
 	return tempDict
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

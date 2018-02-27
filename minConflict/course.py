@@ -16,8 +16,7 @@ class Course():
 		self.level = level #3 = 300 level course
 		self.importanceIndex = 0 #geometric mean of weights given by students
 		self.numEnrolled = numEnrolled #actual number of students enrolled
-		self.notAvailableAt = []
-		self.finalSchedule = []
+		self.finalSchedule = [] #list of tuples. Eg:[("M", 8), ("F, 8")]
 		self.timeConflictDict = {}
 
 	#Increases the weight associated with each key
@@ -30,7 +29,7 @@ class Course():
 
 	def getFrequency(self):
 		return self.frequency
-		
+
 	def getProffessor(self):
 		return self.proffessor
 	
@@ -53,13 +52,17 @@ class Course():
 	def getTitle(self):
 		return self.title
 
+	def getSchedule(self):
+		return self.finalSchedule
+
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
 
-	#Is given a list of the tuples>>
-	#Example(lst = [('M', 08:00:00(time object))])
-	def excludeFollowingTimes(self, listOfNotAvailable):
-		self.notAvailableAt += listOfNotAvailable
+	def setSchedule(self, schedule):
+		self.finalSchedule = schedule
+
+	def addNewDateInSchedule(self, newDate):
+		self.finalSchedule.append(newDate)
 
 
