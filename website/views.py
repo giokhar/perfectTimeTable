@@ -17,6 +17,10 @@ def dashboard_view(request):
 def login_view(request):
 	""" log in user controller"""
 
+	# If user is already logged in it should automatically redirect to the dashboard
+	if request.user.is_authenticated():
+		return redirect('dashboard')
+
 	next_page = request.GET.get("next")
 
 	form = UserLoginForm(request.POST or None)
@@ -37,7 +41,11 @@ def login_view(request):
 	return render(request, 'login.html', {"form": form})
 
 def register_view(request):
-	# print(request.user.is_authenticated())
+
+	# If user is already logged in it should automatically redirect to the dashboard
+	if request.user.is_authenticated():
+		return redirect('dashboard')
+
 	form = UserRegisterForm(request.POST or None)
 	if form.is_valid():
 		user = form.save(commit = False)
