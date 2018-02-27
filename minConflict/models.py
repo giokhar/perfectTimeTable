@@ -24,11 +24,12 @@ class Course(models.Model):
 class Student(models.Model):
 
 	id 					= models.AutoField(max_length = 5, primary_key = True)
-	student_id 			= models.IntegerField(unique = True)
-	firstname	 		= models.CharField(max_length = 255)
-	lastname 			= models.CharField(max_length = 255)
-	year	 			= models.IntegerField()
+	email 				= models.CharField(max_length = 255, blank = True)
 	semester 			= models.CharField(max_length = 100)
+	student_id 			= models.IntegerField(unique = True)
+	firstname	 		= models.CharField(max_length = 255, blank = True)
+	lastname 			= models.CharField(max_length = 255, blank = True)
+	year	 			= models.IntegerField(blank = True)
 	major	 			= models.CharField(max_length = 100, blank = True)
 	preferred_courses 	= models.TextField(blank = True)
 	final_courses 		= models.TextField(blank = True)
