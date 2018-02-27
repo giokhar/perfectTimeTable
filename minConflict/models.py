@@ -28,6 +28,7 @@ class Student(models.Model):
 	firstname	 		= models.CharField(max_length = 255)
 	lastname 			= models.CharField(max_length = 255)
 	year	 			= models.IntegerField()
+	semester 			= models.CharField(max_length = 100, blank = True)
 	major	 			= models.CharField(max_length = 100, blank = True)
 	preferred_courses 	= models.TextField(blank = True)
 	final_courses 		= models.TextField(blank = True)
