@@ -30,6 +30,9 @@ class Course():
 
 	def getFrequency(self):
 		return self.frequency
+		
+	def getProffessor(self):
+		return self.proffessor
 	
 	def getTimeConflictDict(self):
 		return self.timeConflictDict

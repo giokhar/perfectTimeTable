@@ -32,4 +32,35 @@ def createTimeConflictDicts(lstStudents):
 			for otherCourse in nextStudent.getPreferredCourses():
 				if nextCourse != otherCourse:
 					nextCourse.addNewConflict(otherCourse.getCourseNumber())
+#Returns a dictionary where the courses within the same value
+#have the same proffessor.
+#The only reason why this kind of time coflicts can happen 
+#are if the same proffessor teaches two different courses.
+def createCoursesConflictDict(lstCourses):
+	#This is a temporary dictionary, that stores 
+	#proffessor:list of unique N of the classes he/she teaches -- as a key value pair
+	tempDict = {}
+
+	for nextCourse in lstCourses:
+		nextProff = nextCourse.getProffessor()
+		try:
+			#if there is something associated with this key.
+			tempDict[nextProff].append(nextCourse.getCourseNumber())
+		except:
+			tempDict[nextProff] = [nextCourse.getCourseNumber()]
+	return tempDict
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

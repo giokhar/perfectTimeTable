@@ -15,9 +15,11 @@ import json
 
 # 		for nextDaysTuple in possWeekList:
 # 			if nextCourse.getFrequency() == len(nextDaysTuple):
+
 # 				for nextDay in nextDaysTuple:
-# 					for nextHour in range(8,13):
-# 						if isAvailableAt(nextCourse, nextHour, )
+# 					for nextHour in range(8,11):
+# 						if isAvailableAt(nextCourse, nextHour, nextDay):
+
 
 def my_custom_sql():
     cursor = connection.cursor()
@@ -40,9 +42,9 @@ if __name__ == '__main__':
 	
 	C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
 	C2 = Course("ID", 12, "C2", 1, 3, "ajika chavana", 2, 3)
-	C3 = Course("ID", 13, "C3", 1, 3, "ajika chavana", 2, 3)
-	C4 = Course("ID", 14, "C4", 1, 3, "ajika chavana", 2, 3)
-	C5 = Course("ID", 15, "C5", 1, 3, "ajika chavana", 2, 3)
+	C3 = Course("ID", 13, "C3", 1, 3, "giorga mavani", 2, 3)
+	C4 = Course("ID", 14, "C4", 1, 3, "giorga mavani", 2, 3)
+	C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
 
 	lstCourses = []
 	lstCourses.append(C1)
@@ -62,7 +64,10 @@ if __name__ == '__main__':
 	lstStudents.append(S3)
 	lstStudents.append(S4)
 
-	createTimeConflictDicts(lstStudents)
+	print(createCoursesConflictDict(lstCourses))
 
-	for nextCourse in lstCourses:
-		print(nextCourse.title,"-time conflict dict:", nextCourse.getTimeConflictDict())
+
+
+
+
+
