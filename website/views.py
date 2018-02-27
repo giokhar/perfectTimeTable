@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from website.forms import UserLoginForm, UserRegisterForm
 
-from website.dashboard.main import Dashboard
+from website.dashboard import Dashboard
 
 # Create your views here.
 
