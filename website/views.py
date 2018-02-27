@@ -57,8 +57,12 @@ def register_view(request):
 
 	return render(request, 'register.html', {"form": form})
 
-@login_required(login_url='/login')
 def logout_view(request):
 	""" log out user controller"""
+
+	# If user is already logged in it should automatically redirect to the dashboard
+	if request.user.is_authenticated():
+		return redirect('dashboard')
+
 	logout(request)
 	return redirect('index')
