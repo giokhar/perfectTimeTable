@@ -37,15 +37,6 @@ def getData(request, slug):
 
 
 if __name__ == '__main__':
-
-	"""
-
-	**** CHECK THIS OUT BEFORE YOU MOVE ON !!!
-
-	http://django-extensions.readthedocs.io/en/latest/runscript.html
-
-
-	"""
 	
 	C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
 	C2 = Course("ID", 12, "C2", 1, 3, "ajika chavana", 2, 3)
