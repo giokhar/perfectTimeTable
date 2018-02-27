@@ -60,6 +60,10 @@ def register_view(request):
 		password = form.cleaned_data.get('password1')
 		user.set_password(password)
 		user.save()
+		# 
+		# add new item in the students table
+		# 
+		# 
 		login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('dashboard')
 
