@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.models import User
 
+from datetime import datetime
 
 class UserLoginForm(forms.Form):
 
@@ -38,6 +39,21 @@ class UserRegisterForm(forms.ModelForm):
 	email		= forms.EmailField()
 	password1 	= forms.CharField(widget=forms.PasswordInput)
 	password2 	= forms.CharField(widget=forms.PasswordInput)
+
+	def getSemester(self):
+		now = datetime.now()
+
+		year = now.year
+		month = now.month
+		semester = "fall"
+
+		if month > 10:
+			semester = "spring"
+			year += 1
+
+		return str(year) + ":" + str(semester)
+
+
 
 	def clean(self, *args, **kwargs):
 

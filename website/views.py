@@ -55,6 +55,7 @@ def register_view(request):
 		return redirect('dashboard')
 
 	form = UserRegisterForm(request.POST or None)
+	print(form.getSemester())
 	if form.is_valid():
 		user = form.save(commit = False)
 		password = form.cleaned_data.get('password1')
