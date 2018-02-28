@@ -6,20 +6,48 @@ from helper import *
 
 from urllib.request import urlopen
 import json
+#-------------------------------------------------------#
+C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
+C2 = Course("ID", 12, "C2", 1, 3, "ajika chavana", 2, 3)
+C3 = Course("ID", 13, "C3", 1, 3, "giorga mavani", 2, 3)
+C4 = Course("ID", 14, "C4", 1, 3, "giorga mavani", 2, 3)
+C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
 
-# def scheduller(coursesPriorityQueue):
-# 	possWeekList = [('M', 'W', 'F'), ('T', "R")]
+lstCourses = []
+lstCourses.append(C1)
+lstCourses.append(C2)
+lstCourses.append(C3)
+lstCourses.append(C4)
+lstCourses.append(C5)
 
-# 	while len(coursesPriorityQueue) != 0:
-# 		nextCourse = heappop(coursesPriorityQueue)
+conflictDict = createCoursesConflictDict(lstCourses)
+#_______________________________________________________#
 
-# 		for nextDaysTuple in possWeekList:
-# 			if nextCourse.getFrequency() == len(nextDaysTuple):
+def isAvailableAt(nextCourse, nextHour, nextDay):
+	return not (nextDay, nextHour) in nextCourse.getNotAvailableAtList()
+ 
+def scheduleNextCourse(nextCourse, nextDaysTuple):
+	for nextHour in range(8,11):
+		for nextDay in nextDaysTuple:
 
-# 				for nextDay in nextDaysTuple:
-# 					for nextHour in range(8,11):
-# 						if isAvailableAt(nextCourse, nextHour, nextDay):
+			if isAvailableAt(nextCourse, nextHour, nextDay):
+				nextCourse.addNewDateInSchedule((nextDay, nextHour))
+				sameProffCourses = conflictDict[nextCourse.getProffessor()]
+				for next in sameProffCourses:
+					next.addNotAvailableTime((nextDay, nextHour))
 
+			if len(nextCourse.getSchedule()) == nextCourse.getFrequency():
+				return
+
+def scheduller(coursesPriorityQueue):
+	possWeekList = [('M', 'W', 'F'), ('T', "R")]
+
+	while len(coursesPriorityQueue) != 0:
+		nextCourse = heappop(coursesPriorityQueue)[1]
+
+		for nextDaysTuple in possWeekList:
+			if nextCourse.getFrequency() == len(nextDaysTuple):
+				scheduleNextCourse(nextCourse, nextDaysTuple)
 
 def my_custom_sql():
     cursor = connection.cursor()
@@ -39,19 +67,6 @@ def getData(request, slug):
 
 
 if __name__ == '__main__':
-	
-	C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
-	C2 = Course("ID", 12, "C2", 1, 3, "ajika chavana", 2, 3)
-	C3 = Course("ID", 13, "C3", 1, 3, "giorga mavani", 2, 3)
-	C4 = Course("ID", 14, "C4", 1, 3, "giorga mavani", 2, 3)
-	C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
-
-	lstCourses = []
-	lstCourses.append(C1)
-	lstCourses.append(C2)
-	lstCourses.append(C3)
-	lstCourses.append(C4)
-	lstCourses.append(C5)
 
 	S1 = Student("ID", "student_id", "davite", "kvartskhava", 1, "computer science", [C1, C2, C3])
 	S2 = Student("ID", "student_id", "davita", "kvartskhava", 1, "computer science", [C1, C2, C4])
@@ -64,7 +79,10 @@ if __name__ == '__main__':
 	lstStudents.append(S3)
 	lstStudents.append(S4)
 
-	print(createCoursesConflictDict(lstCourses))
+	q = createCoursesPriorityQueue(lstCourses, lstStudents)
+	scheduller(q)
+	for nextCourse in lstCourses:
+		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
 
 
 

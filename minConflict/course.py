@@ -18,6 +18,7 @@ class Course():
 		self.numEnrolled = numEnrolled #actual number of students enrolled
 		self.finalSchedule = [] #list of tuples. Eg:[("M", 8), ("F, 8")]
 		self.timeConflictDict = {}
+		self.notAvailableAt = []
 
 	#Increases the weight associated with each key
 	#key = courseNumber, value = weight(initially 0)
@@ -55,6 +56,9 @@ class Course():
 	def getSchedule(self):
 		return self.finalSchedule
 
+	def getNotAvailableAtList(self):
+		return self.notAvailableAt
+
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
@@ -64,5 +68,8 @@ class Course():
 
 	def addNewDateInSchedule(self, newDate):
 		self.finalSchedule.append(newDate)
+
+	def addNotAvailableTime(self, newDate):
+		self.notAvailableAt.append(newDate)
 
 

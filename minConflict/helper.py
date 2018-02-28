@@ -19,7 +19,7 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 		#can be returned from the priority queue as the first element.
 		finalIndex = 1 / (nextCourse.getImportanceIndex() * levelImportanceIndex)
 
-		heappush(coursesPriorityQueue, (finalIndex, nextCourse.title))
+		heappush(coursesPriorityQueue, (finalIndex, nextCourse))
 
 	return coursesPriorityQueue
 
