@@ -74,7 +74,6 @@ def logout_view(request):
 
 	# If user is already logged in it should automatically redirect to the dashboard
 	if request.user.is_authenticated():
-		return redirect('dashboard')
-
-	logout(request)
+		logout(request)
+	
 	return redirect('index')
