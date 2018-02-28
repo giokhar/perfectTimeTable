@@ -24,7 +24,7 @@ class Course(models.Model):
 class Student(models.Model):
 
 	id 					= models.AutoField(max_length = 5, primary_key = True)
-	email 				= models.CharField(max_length = 255, blank = True)
+	email 				= models.CharField(max_length = 255)
 	semester 			= models.CharField(max_length = 100)
 	student_id 			= models.IntegerField(unique = True)
 	firstname	 		= models.CharField(max_length = 255, blank = True)
