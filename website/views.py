@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from website.forms import UserLoginForm, UserRegisterForm
 
 from website.dashboard import Dashboard
+from minConflict.models import Student
 
 # Create your views here.
 
@@ -55,16 +56,19 @@ def register_view(request):
 		return redirect('dashboard')
 
 	form = UserRegisterForm(request.POST or None)
-	print(form.getSemester())
 	if form.is_valid():
 		user = form.save(commit = False)
 		password = form.cleaned_data.get('password1')
 		user.set_password(password)
 		user.save()
-		# 
-		# add new item in the students table
-		# 
-		# 
+
+		# Creating instance in the Students table
+		email 		= form.cleaned_data.get("email")
+		semester 	= form.getSemester()
+
+		new_student = Student(email = email, semester = semester)
+		new_student.save()
+
 		login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 		return redirect('dashboard')
 

@@ -26,17 +26,16 @@ class Student(models.Model):
 	id 					= models.AutoField(max_length = 5, primary_key = True)
 	email 				= models.CharField(max_length = 255)
 	semester 			= models.CharField(max_length = 100)
-	student_id 			= models.IntegerField(unique = True, blank = True)
-	firstname	 		= models.CharField(max_length = 255, blank = True)
-	lastname 			= models.CharField(max_length = 255, blank = True)
-	year	 			= models.IntegerField(blank = True)
-	major	 			= models.CharField(max_length = 100, blank = True)
-	preferred_courses 	= models.TextField(blank = True)
-	final_courses 		= models.TextField(blank = True)
+	firstname	 		= models.CharField(max_length = 255, null=True, blank = True)
+	lastname 			= models.CharField(max_length = 255, null=True, blank = True)
+	year	 			= models.IntegerField(null=True, blank = True)
+	major	 			= models.CharField(max_length = 100, null=True, blank = True)
+	preferred_courses 	= models.TextField(null=True, blank = True)
+	final_courses 		= models.TextField(null=True, blank = True)
 
 
 	def __str__(self): # Value that we see in DJANGO ADMIN
-		return self.firstname + " " + self.lastname + " (student_id: " + str(self.student_id) + ")"
+		return "email: " + str(self.email) + ")"
 
 	class Meta:
 		db_table = "students" # Table name in DB

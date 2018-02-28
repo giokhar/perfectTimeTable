@@ -40,6 +40,7 @@ class UserRegisterForm(forms.ModelForm):
 	password1 	= forms.CharField(widget=forms.PasswordInput)
 	password2 	= forms.CharField(widget=forms.PasswordInput)
 
+
 	def getSemester(self):
 		now = datetime.now()
 
@@ -53,7 +54,7 @@ class UserRegisterForm(forms.ModelForm):
 
 		return str(year) + ":" + str(semester)
 
-
+	
 
 	def clean(self, *args, **kwargs):
 
