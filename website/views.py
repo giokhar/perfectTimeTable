@@ -15,12 +15,9 @@ def index_view(request):
 @login_required(login_url='/login')
 def dashboard_view(request):
 	
-	dash = Dashboard(request.user)
+	dashboard = Dashboard(request.user)
 
-	print(dash.getEmail())
-
-
-	return render(request, 'dashboard.html')
+	return render(request, 'dashboard.html', {"dashboard": dashboard})
 
 
 def login_view(request):
