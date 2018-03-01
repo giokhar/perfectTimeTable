@@ -54,7 +54,7 @@ def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
 	for course, weight in stTimeConflictDict:
 		course.addNotRecommendedTime((weight, (nextDay, nextHour)))
 
-def temp():
+def temp(nextCourse, nextDay, iterationN):
 	for nextHour in range(8,11):
 
 			if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
@@ -66,7 +66,7 @@ def temp():
 
 def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN):
 	for nextDay in nextDaysTuple:
-		temp(nextCourse, nextDay)
+		temp(nextCourse, nextDay, iterationN)
 	if not isDoneSchedulling(nextCourse): 
 		return False
 
