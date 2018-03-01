@@ -3,7 +3,7 @@ from django.db import models
 class Course(models.Model):
 
 	id 				= models.AutoField(max_length = 5, primary_key = True)
-	created_at 			= models.DateTimeField(auto_now_add=True)
+	created_at 		= models.DateTimeField(auto_now_add=True)
 	crn 			= models.IntegerField(unique = True)
 	course_number 	= models.CharField(max_length = 50)
 	title 			= models.CharField(max_length = 255)
