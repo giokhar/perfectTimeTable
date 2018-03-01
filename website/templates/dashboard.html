@@ -79,11 +79,12 @@
                           <i class="material-icons">center_focus_strong</i> Major: <b>{{ dashboard.getMajor.upper }}</b></p>
                         <p>
                           <i class="material-icons">date_range</i> Registration for: <b>{{ dashboard.getSemester.upper }}</b></p>
-                          {{ dashboard.getPreferredCourses }}
+                          {{ dashboard.getPreferredCourses }} <br>
+                          {{ dashboard.getFinalCourses }}
                         
                       </div>
                       <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b> &nbsp; <b>Lastname: {{ dashboard.getLastName.upper }}</b>
+                        <span class="card-title grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b> &nbsp; Lastname: <b>{{ dashboard.getLastName.upper }}</b>
                           <i class="material-icons right">close</i>
                         </span>
                         <p>

@@ -59,6 +59,10 @@ class Dashboard(object):
 		json_courses = json.loads(preferred_courses)
 		return json_courses
 
+	def getFinalCourses(self):
+		preferred_courses = self.getStudent()['final_courses'] or "n/a"
+		json_courses = json.loads(preferred_courses)
+		return json_courses
 
 	def getBackground(self):
 		return 'images/gallary/'+ str(randrange(1,33)) +'.png'
