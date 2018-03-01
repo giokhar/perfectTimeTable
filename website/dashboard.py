@@ -56,12 +56,12 @@ class Dashboard(object):
 
 	def getPreferredCourses(self):
 		preferred_courses = self.getStudent()['preferred_courses'] or "n/a"
-		json_courses = json.loads(preferred_courses)
+		json_courses = json.loads(preferred_courses)['preferred_courses'][0]
 		return json_courses
 
 	def getFinalCourses(self):
 		preferred_courses = self.getStudent()['final_courses'] or "n/a"
-		json_courses = json.loads(preferred_courses)
+		json_courses = json.loads(preferred_courses)['final_courses'][0]
 		return json_courses
 
 	def getBackground(self):
