@@ -3,6 +3,7 @@ Description
 '''
 import math
 from datetime import time
+from heapq import heappush, heappop
 
 class Course():
 	def __init__(self, ID, courseNumber, title, duration, frequency, proffessor, level, numEnrolled):
@@ -19,6 +20,7 @@ class Course():
 		self.finalSchedule = [] #list of tuples. Eg:[("M", 8), ("F, 8")]
 		self.timeConflictDict = {}
 		self.notAvailableAt = []
+		self.notRecommendedAt = []
 
 	#Increases the weight associated with each key
 	#key = courseNumber, value = weight(initially 0)
@@ -57,8 +59,13 @@ class Course():
 		return self.finalSchedule
 
 	def getNotAvailableAtList(self):
-		return self.notAvailableAt
+		newList = []
+		for i in self.notRecommendedAt:
+			newList.append(i[1])
+		return newList
 
+	def getNotRecommendedAtList(self):
+		return self.getNotRecommendedAt
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
@@ -71,5 +78,11 @@ class Course():
 
 	def addNotAvailableTime(self, newDate):
 		self.notAvailableAt.append(newDate)
+
+	def addNotRecommendedTime(self,newDate, weight):
+		heappush(self.notRecommendedAt, (1 / weight, newDate))
+
+	def resetSchedule(self):
+		self.finalSchedule = []
 
 

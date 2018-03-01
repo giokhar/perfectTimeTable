@@ -8,7 +8,7 @@ from urllib.request import urlopen
 import json
 #-------------------------------------------------------#
 C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
-C2 = Course("ID", 12, "C2", 1, 3, "ajika chavana", 2, 3)
+C2 = Course("ID", 12, "C2", 1, 2, "ajika chavana", 2, 3)
 C3 = Course("ID", 13, "C3", 1, 3, "giorga mavani", 2, 3)
 C4 = Course("ID", 14, "C4", 1, 3, "giorga mavani", 2, 3)
 C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
@@ -25,29 +25,59 @@ conflictDict = createCoursesConflictDict(lstCourses)
 
 def isAvailableAt(nextCourse, nextHour, nextDay):
 	return not (nextDay, nextHour) in nextCourse.getNotAvailableAtList()
+
+def isRecommendedAt(nextCourse, nextHour, nextDay, iterationN):
+	notRecList = nextCourse.getNotRecommendedAtList()
+	size = len(notRecList)
+	index = iterationN * size // 4
+	return not (nextDay, nextHour) in notRecList[index]
+
+def isDoneSchedulling(course):
+	return len(nextCourse.getSchedule()) == nextCourse.getFrequency()
+
+def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
+	nextCourse.addNewDateInSchedule((nextDay, nextHour))
+	#______Fills in notAvailableAtList for the courses that are taught by same proffessor.
+	sameProffCourses = conflictDict[nextCourse.getProffessor()] 
+	for next in sameProffCourses:
+		next.addNotAvailableTime((nextDay, nextHour))
+	#_______Fills in notRecommendedAt list for the courses that have time conflicts in terms of students.
+	stTimeConflictDict = nextCourse.getTimeConflictDict()
+	for course, weight in stTimeConflictDict:
+		course.addNotRecommendedTime((weight, (nextDay, nextHour)))
+
  
-def scheduleNextCourse(nextCourse, nextDaysTuple):
+def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN):
 	for nextHour in range(8,11):
 		for nextDay in nextDaysTuple:
 
-			if isAvailableAt(nextCourse, nextHour, nextDay):
-				nextCourse.addNewDateInSchedule((nextDay, nextHour))
-				sameProffCourses = conflictDict[nextCourse.getProffessor()]
-				for next in sameProffCourses:
-					next.addNotAvailableTime((nextDay, nextHour))
+			if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
+				addDateToCourseSchedulle(nextCourse, nextDay, nextHour)
 
-			if len(nextCourse.getSchedule()) == nextCourse.getFrequency():
-				return
+			if isDoneSchedulling(nextCourse):
+				return True
+
+	if not isDoneSchedulling(nextCourse): 
+		return False
 
 def scheduller(coursesPriorityQueue):
-	possWeekList = [('M', 'W', 'F'), ('T', "R")]
+	possWeekList = [('M', 'W', 'F'),('M', 'R'), ('T', 'R'), ('T', 'F'), ('W', 'R')]
 
 	while len(coursesPriorityQueue) != 0:
 		nextCourse = heappop(coursesPriorityQueue)[1]
+		done = False
+		iterationN = 0
+		while not done:
+			nextCourse.resetSchedule()
 
-		for nextDaysTuple in possWeekList:
-			if nextCourse.getFrequency() == len(nextDaysTuple):
-				scheduleNextCourse(nextCourse, nextDaysTuple)
+			for nextDaysTuple in possWeekList:
+				if nextCourse.getFrequency() == len(nextDaysTuple):
+					done = scheduleNextCourse(nextCourse, nextDaysTuple, iterationN)
+					if done: break
+			iterationN += 1
+
+
+
 
 def my_custom_sql():
     cursor = connection.cursor()

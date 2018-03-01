@@ -24,14 +24,14 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 	return coursesPriorityQueue
 
 #Creates a dictionary for each Course object where the key is
-#the courseNumber and the value is the number of time conflicts with 
+#the courseObject and the value is the number of time conflicts with 
 #the course associated with the key. 
 def createTimeConflictDicts(lstStudents):
 	for nextStudent in lstStudents:
 		for nextCourse in nextStudent.getPreferredCourses():
 			for otherCourse in nextStudent.getPreferredCourses():
 				if nextCourse != otherCourse:
-					nextCourse.addNewConflict(otherCourse.getCourseNumber())
+					nextCourse.addNewConflict(otherCourse)
 #Returns a dictionary where the courses within the same value
 #have the same proffessor.
 #The only reason why this kind of time coflicts can happen 
