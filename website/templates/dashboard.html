@@ -59,8 +59,20 @@
             <div class="section">
               <!-- <p class="caption">A Simple Blank Page to use it for your custome design and elements.</p> -->
                 <div class="row">
-                  {% include "widgets/user-profile.html" %}
-                  {% include "widgets/preferred-courses.html" %}
+                  <!-- START: PROFILE -->
+                    <div class="col s12 m12 l6">
+                      {% if dashboard.canEdit %}
+                        {% include "widgets/preferred-courses.html" %}
+                      {% else %}
+                        {% include "widgets/user-profile.html" %}
+                      {% endif %}
+                    </div>
+                  <!-- END: PROFILE -->
+                  <!-- START: PREFERRED COURSES -->
+                    <div class="col s12 m12 l6">
+                      {% include "widgets/preferred-courses.html" %}
+                    </div>
+                  <!-- END: PREFERRED COURSES -->
                 </div>
               <div class="divider"></div>
             </div>

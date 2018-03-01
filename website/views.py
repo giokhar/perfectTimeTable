@@ -22,6 +22,10 @@ def dashboard_view(request):
 
 	return render(request, 'dashboard.html', {"dashboard": dashboard})
 
+@login_required(login_url='/login')
+def profile_edit_view(request):
+	return render(request, 'dashboard.html')
+
 
 def login_view(request):
 	""" log in user controller"""
