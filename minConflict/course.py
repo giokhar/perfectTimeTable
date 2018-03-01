@@ -59,13 +59,13 @@ class Course():
 		return self.finalSchedule
 
 	def getNotAvailableAtList(self):
+		return self.notAvailableAt
+
+	def getNotRecommendedAtList(self):
 		newList = []
 		for i in self.notRecommendedAt:
 			newList.append(i[1])
 		return newList
-
-	def getNotRecommendedAtList(self):
-		return self.getNotRecommendedAt
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
