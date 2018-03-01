@@ -56,18 +56,17 @@ def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
 
  
 def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN):
-	for nextDay in nextDaysTuple:
-		for nextHour in range(8,11):
+	for nextHour in range(8,11):
+		for nextDay in nextDaysTuple:
 
 			if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
 				addDateToCourseSchedulle(nextCourse, nextDay, nextHour)
-				break
 				
 			if isDoneSchedulling(nextCourse):
 				return True
 
-		if not isDoneSchedulling(nextCourse): 
-			return False
+	if not isDoneSchedulling(nextCourse): 
+		return False
 
 def scheduller(coursesPriorityQueue):
 	possWeekList = [('M', 'W', 'F'),('M', 'R'), ('T', 'R'), ('T', 'F'), ('W', 'R')]
