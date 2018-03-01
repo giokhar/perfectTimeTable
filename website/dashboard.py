@@ -6,7 +6,10 @@ class Dashboard(object):
 
 		self.user = user
 		self.email = user.email
-		
+		self.status = user.is_staff
+	
+	def isAdmin(self):
+		return self.status	
 
 	def getEmail(self):
 		return self.email

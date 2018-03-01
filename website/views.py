@@ -14,8 +14,11 @@ def index_view(request):
 
 @login_required(login_url='/login')
 def dashboard_view(request):
-	
+
 	dashboard = Dashboard(request.user)
+
+	if dashboard.isAdmin:
+		return render(request, 'staff/admin.html', {"dashboard": dashboard})
 
 	return render(request, 'dashboard.html', {"dashboard": dashboard})
 
