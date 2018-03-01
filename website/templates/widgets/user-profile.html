@@ -1,6 +1,6 @@
 {% load staticfiles %}
                 <!-- START PROFILE -->
-                  <div class="col s12 m6 l6 fill">
+                  <div class="col s12 m12 l6">
                       <h4 class="header">User Profile</h4>
                       <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -20,8 +20,8 @@
                             <i class="material-icons">center_focus_strong</i> Major: <b>{{ dashboard.getMajor.upper }}</b></p>
                           <p>
                             <i class="material-icons">date_range</i> Registration for: <b>{{ dashboard.getSemester.upper }}</b></p>
-                            {{ dashboard.getPreferredCourses }} <br>
-                            {{ dashboard.getFinalCourses }}
+                            <!-- {{ dashboard.getPreferredCourses }} <br> -->
+                            <!-- {{ dashboard.getFinalCourses }} -->
                           
                         </div>
                         <div class="card-reveal">
