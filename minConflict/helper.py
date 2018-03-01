@@ -1,6 +1,7 @@
 from student import Student
 from course import Course
 from heapq import heappush, heappop
+import random
 
 #Is given set of Classes and Students
 def createCoursesPriorityQueue(lstCourses, lstStudents):
@@ -17,7 +18,7 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 		#I am putting the the courses in the priority queue by the finalIndex, 
 		#but I am dividing 1 on the index, so that the most important one
 		#can be returned from the priority queue as the first element.
-		finalIndex = 1 / (nextCourse.getImportanceIndex() * levelImportanceIndex)
+		finalIndex = 1 / (nextCourse.getImportanceIndex() * levelImportanceIndex) + random.randint(1,100) / 10000000
 
 		heappush(coursesPriorityQueue, (finalIndex, nextCourse))
 
