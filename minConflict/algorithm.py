@@ -53,17 +53,17 @@ def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
 	stTimeConflictDict = nextCourse.getTimeConflictDict()
 	for course, weight in stTimeConflictDict:
 		course.addNotRecommendedTime((weight, (nextDay, nextHour)))
-def temp(nextCourse, nextDay, iterationN):
-	for nextHour in range(8,10):
 
-			if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
-				addDateToCourseSchedulle(nextCourse, nextDay, nextHour)
-				return
+def chooseHour(nextCourse, nextDay, iterationN):
+	for nextHour in range(8,10):
+		if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
+			addDateToCourseSchedulle(nextCourse, nextDay, nextHour)
+			return
 
  
 def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN):
 	for nextDay in nextDaysTuple:
-		temp(nextCourse, nextDay, iterationN)
+		chooseHour(nextCourse, nextDay, iterationN)
 		if isDoneSchedulling(nextCourse):
 			return True
 
@@ -85,7 +85,7 @@ def scheduller(coursesPriorityQueue):
 
 			for nextDaysTuple in possWeekList:
 				nextCourse.resetSchedule()
-				
+
 				if nextCourse.getFrequency() == len(nextDaysTuple):
 					done = scheduleNextCourse(nextCourse, nextDaysTuple, iterationN)
 					if done: break
