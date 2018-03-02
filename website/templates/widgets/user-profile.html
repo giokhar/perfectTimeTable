@@ -6,35 +6,37 @@
                         </div>
                         <div class="card-content">
                           <img src="{% static 'images/avatar/avatar-7.png' %}" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1">
-                          <a href="{% url 'edit' %}" class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
+                          <a href="{% url 'dashboard' %}" class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
                             <i class="material-icons">edit</i>
                           </a>
                           <h5 class="card-title activator grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b>  <br>Lastname: <b>{{ dashboard.getLastName.upper }}</b></h5>
+                          <hr style="opacity: .2">
                           <p>
                             <i class="material-icons">email</i> Email: <b>{{ dashboard.getEmail.upper }}</b></p>
                           <p>
                             <i class="material-icons">schedule</i> Year: <b>{{ dashboard.getClassYear.upper }}</b></p>
                           <p>
                             <i class="material-icons">center_focus_strong</i> Major: <b>{{ dashboard.getMajor.upper }}</b></p>
+                          <hr style="opacity: .2">
                           <p>
                             <i class="material-icons">date_range</i> Registration for: <b>{{ dashboard.getSemester.upper }}</b></p>
-                            <!-- {{ dashboard.getPreferredCourses }} <br> -->
-                            <!-- {{ dashboard.getFinalCourses }} -->
                           
                         </div>
-                        <div class="card-reveal">
+                        <!-- <div class="card-reveal">
                           <span class="card-title grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b> <br>Lastname: <b>{{ dashboard.getLastName.upper }}</b>
                             <i class="material-icons right">close</i>
                           </span>
+                          <hr style="opacity: .2">
                           <p>
                             <i class="material-icons">email</i> Email: <b>{{ dashboard.getEmail.upper }}</b></p>
                           <p>
                             <i class="material-icons">schedule</i> Year: <b>{{ dashboard.getClassYear.upper }}</b></p>
                           <p>
                             <i class="material-icons">center_focus_strong</i> Major: <b>{{ dashboard.getMajor.upper }}</b></p>
+                          <hr style="opacity: .2">
                           <p>
                             <i class="material-icons">date_range</i> Registration for: <b>{{ dashboard.getSemester }}</b></p>
                           <p>
                           </p>
-                        </div>
+                        </div> -->
                       </div>

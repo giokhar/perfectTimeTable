@@ -16,6 +16,13 @@ def api(request):
 	result = getData(request, "api/students")
 	return render(request, "index.html", {"result": result})
 
+class MajorList(APIView):
+	def get(self, request):
+		majors = MajorModel.objects.all()
+		serializer = MajorSerializer(majors, many = True)
+
+		return Response(serializer.data)
+
 class CourseList(APIView):
 	"""
 	List all the courses as a RESTapi

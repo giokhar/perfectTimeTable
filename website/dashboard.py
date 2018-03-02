@@ -16,6 +16,7 @@ class Dashboard(object):
 	def getEmail(self):
 		return self.email
 
+
 	# This is a recent semester for SQL query, getSemester is beautifier for that
 	def getRecentSemester(self):
 		cursor 	= connection.cursor()
@@ -78,7 +79,7 @@ class Dashboard(object):
 		course_dict = {}
 
 		cursor 	= connection.cursor()
-		cursor.execute("SELECT * FROM courses WHERE crn=%s", [course])
+		cursor.execute("SELECT * FROM courses WHERE cnr=%s", [course])
 		desc = cursor.description
 		course_dict[course] = [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()][0]
 		return course_dict

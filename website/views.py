@@ -20,11 +20,11 @@ def dashboard_view(request):
 	if dashboard.isAdmin():
 		return render(request, 'staff/admin.html', {"dashboard": dashboard})
 
-	return render(request, 'dashboard.html', {"dashboard": dashboard})
+	editable = False
+	if request.get_full_path() == "/dashboard/edit/":
+		editable = True
 
-@login_required(login_url='/login')
-def profile_edit_view(request):
-	return render(request, 'dashboard.html')
+	return render(request, 'dashboard.html', {"dashboard":dashboard, "editable":editable})
 
 
 def login_view(request):

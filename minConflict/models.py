@@ -1,9 +1,22 @@
 from django.db import models
 
+class Major(models.Model):
+	
+	id 				= models.AutoField(max_length = 5, primary_key = True)
+	title 			= models.CharField(max_length = 255)
+	department 		= models.CharField(max_length = 255)
+	created_at 		= models.DateTimeField(auto_now_add=True, null=True)
+	updated_at 		= models.DateTimeField(auto_now=True, null=True)
+
+	def __str__(self): # Value that we see in DJANGO ADMIN
+		return self.title
+
+	class Meta:
+		db_table = "majors" # Table name in DB
+
 class Course(models.Model):
 
 	id 				= models.AutoField(max_length = 5, primary_key = True)
-	created_at 		= models.DateTimeField(auto_now_add=True)
 	cnr 			= models.IntegerField(unique = True)
 	course_number 	= models.CharField(max_length = 50)
 	title 			= models.CharField(max_length = 255)

@@ -61,8 +61,8 @@
                 <div class="row">
                   <!-- START: PROFILE -->
                     <div class="col s12 m12 l6">
-                      {% if dashboard.canEdit %}
-                        {% include "widgets/preferred-courses.html" %}
+                      {% if editable %}
+                        {% include "widgets/edit-profile.html" %}
                       {% else %}
                         {% include "widgets/user-profile.html" %}
                       {% endif %}

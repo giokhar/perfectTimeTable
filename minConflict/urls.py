@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r'^courses/(?P<pk>[0-9]+)/$', views.CourseDetail.as_view(), name='course_detail_api'),
 	url(r'^students/$', views.StudentList.as_view(), name='student_api'),
 	url(r'^students/(?P<pk>[0-9]+)/$', views.StudentDetail.as_view(), name='student_detail_api'),
+	url(r'^majors/$', views.MajorList.as_view(), name='majors')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
