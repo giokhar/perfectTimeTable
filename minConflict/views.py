@@ -10,8 +10,13 @@ from rest_framework import status
 from minConflict.serializers import *
 # import my algorithm
 from minConflict.algorithm import *
+import json
 
 def api(request):
+
+	url 		= "http://" + request.get_host() + "/api/students/?format=json"
+	jsonurl 	= urlopen(url)
+	data 		= json.loads(jsonurl.read())
 		
 	S1 = Student("ID", "student_id", "davite", "kvartskhava", 1, "computer science", [C1, C2, C3])
 	S2 = Student("ID", "student_id", "davita", "kvartskhava", 1, "computer science", [C1, C2, C4])
@@ -39,11 +44,11 @@ def api(request):
 	q = createCoursesPriorityQueue(lstCourses, lstStudents)
 	scheduller(q)
 
-	for nextCourse in lstCourses:
-		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
+	# for nextCourse in lstCourses:
+	# 	print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
 
 
-	# result = [conflictDict]
+	result = data
 	return render(request, "index.html", {"result": result})
 
 class MajorList(APIView):
