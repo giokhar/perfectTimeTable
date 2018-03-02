@@ -7,6 +7,8 @@ from website.forms import UserLoginForm, UserRegisterForm
 from website.dashboard import Dashboard
 from minConflict.models import Student
 
+from django.contrib import messages
+
 # Create your views here.
 
 def index_view(request):
@@ -26,6 +28,23 @@ def dashboard_view(request):
 
 	return render(request, 'dashboard.html', {"dashboard":dashboard, "editable":editable})
 
+def dashboard_update(request):
+
+	firstname 	= request.GET['firstname']
+	lastname 	= request.GET['lastname']
+	class_year	= request.GET['class_year']
+	major		= request.GET['major']
+	semester 	= request.GET['semester']
+
+	student = Student.objects.filter(email=request.user.email, semester=semester).update(	firstname	= firstname, 
+																							lastname	= lastname, 
+																							class_year	= class_year, 
+																							major		= major)
+
+	if student:
+		messages.success(request, 'Successfully Updated !')
+
+	return redirect('dashboard')
 
 def login_view(request):
 	""" log in user controller"""

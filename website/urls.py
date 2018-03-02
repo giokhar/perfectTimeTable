@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^register/$', register_view, name='register'),
 	url(r'^dashboard/$', dashboard_view, name='dashboard'),
 	url(r'^dashboard/edit/$', dashboard_view, name='dashboard_edit'),
+	url(r'^dashboard/update/', dashboard_update, name='dashboard_update'),
 ]

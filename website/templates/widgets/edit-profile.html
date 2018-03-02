@@ -9,7 +9,8 @@
                           <img src="{% static 'images/avatar/avatar-7.png' %}" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1">
                             <h4 class="header2">Edit Profile</h4>
                             <div class="row">
-                              <form class="col s12" method="get">
+                              <form action="{% url 'dashboard_update' %}" class="col s12" method="get">
+                                <input type="hidden" name="semester" value="{{ dashboard.getRecentSemester }}">
                                 <div class="row">
                                   <div class="input-field col s6">
                                     <input id="first_name" type="text" name="firstname" value="{{ dashboard.getFirstName }}">
