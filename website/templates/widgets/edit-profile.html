@@ -1,19 +1,58 @@
 {% load staticfiles %}
                       <h4 class="header">User Profile</h4>
-                      <div id="profile-card" class="card">
+                      <div id="profile-card" class="card" style="overflow: visible;">
                         <div class="card-image waves-effect waves-block waves-light">
                           <img class="activator" src="{% static dashboard.getBackground %}" alt="user bg">
                         </div>
                         <div class="card-content">
                           <img src="{% static 'images/avatar/avatar-7.png' %}" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1">
-                          <h5 class="card-title activator grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b>  <br>Lastname: <b>{{ dashboard.getLastName.upper }}</b></h5>
-                          <p>
-                            <i class="material-icons">email</i> Email: <b>{{ dashboard.getEmail.upper }}</b></p>
-                          <p>
-                            <i class="material-icons">schedule</i> Year: <b>{{ dashboard.getClassYear.upper }}</b></p>
-                          <p>
-                            <i class="material-icons">center_focus_strong</i> Major: <b>{{ dashboard.getMajor.upper }}</b></p>
-                          <p>
-                            <i class="material-icons">date_range</i> Registration for: <b>{{ dashboard.getSemester.upper }}</b></p>
+                            <h4 class="header2">Edit Profile</h4>
+                            <div class="row">
+                              <form class="col s12">
+                                <div class="row">
+                                  <div class="input-field col s6">
+                                    <input id="first_name" type="text">
+                                    <label for="first_name">First Name</label>
+                                  </div>
+                                  <div class="input-field col s6">
+                                    <input id="last_name" type="text">
+                                    <label for="last_name">Last Name</label>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="input-field col s12 m6">
+                                    <select class="icons" required>
+                                      <option value="" disabled selected>Choose your option</option>
+                                      <option value="1" data-icon="{% static 'images/avatar/avatar-1.png' %}" class="left circle">Freshman</option>
+                                      <option value="2" data-icon="{% static 'images/avatar/avatar-2.png' %}" class="left circle">Sophomore</option>
+                                      <option value="3" data-icon="{% static 'images/avatar/avatar-3.png' %}" class="left circle">Junior</option>
+                                      <option value="4" data-icon="{% static 'images/avatar/avatar-4.png' %}" class="left circle">Senior</option>
+                                    </select>
+                                    <label>Class Year</label>
+                                  </div>
+                                  <div class="input-field col s12 m6">
+                                    <select>
+                                      <optgroup label="team 1">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                      </optgroup>
+                                      <optgroup label="team 2">
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                      </optgroup>
+                                    </select>
+                                    <label>Major</label>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="input-field col s12">
+                                    <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+                                      <i class="material-icons right">send</i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+
                         </div>
                       </div>
