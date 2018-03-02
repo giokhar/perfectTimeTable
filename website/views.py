@@ -15,6 +15,13 @@ def index_view(request):
 	return render(request, 'home.html')
 
 @login_required(login_url='/login')
+def course_registration_view(request):
+
+	dashboard = Dashboard(request)
+
+	return render(request, 'schedule.html', {"dashboard": dashboard})
+
+@login_required(login_url='/login')
 def dashboard_view(request):
 
 	dashboard = Dashboard(request)
@@ -30,6 +37,7 @@ def dashboard_view(request):
 
 	return render(request, 'dashboard.html', {"dashboard":dashboard, "editable":editable})
 
+@login_required(login_url='/login')
 def dashboard_update(request):
 
 	firstname 	= request.GET['firstname']

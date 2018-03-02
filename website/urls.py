@@ -9,4 +9,5 @@ urlpatterns = [
 	url(r'^dashboard/$', dashboard_view, name='dashboard'),
 	url(r'^dashboard/edit/$', dashboard_view, name='dashboard_edit'),
 	url(r'^dashboard/update/', dashboard_update, name='dashboard_update'),
+	url(r'^registration/$', course_registration_view, name='course_registration'),
 ]

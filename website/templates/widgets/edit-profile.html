@@ -7,7 +7,7 @@
                         <a href="{% url 'dashboard' %}"><i class="material-icons right">close</i></a>
                         <div class="card-content">
                           <img src="{% static 'images/avatar/avatar-7.png' %}" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1">
-                            <h4 class="header2">Edit Profile</h4>
+                            <h4 class="header2">Edit Your Profile</h4>
                             <div class="row">
                               <form action="{% url 'dashboard_update' %}" class="col s12" method="get">
                                 <input type="hidden" name="semester" value="{{ dashboard.getRecentSemester }}">

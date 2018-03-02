@@ -2,15 +2,15 @@
                     <h4 class="header">Desired Courses</h4>
                     <ul id="issues-collection" class="collection z-depth-1">
                       <li class="collection-item avatar">
-                        <i class="material-icons red accent-2 circle">device_hub</i>
+                        <i class="material-icons red accent-2 circle">book</i>
                         <h6 class="collection-header m-0">COURSES</h6>
                         <p>I would like to take next semester</p>
                       </li>
                       <li class="collection-item" style="text-align:center;">
                         {% if dashboard.getPreferredCourses|length == 0 %}
-                          <a class="btn waves-effect waves-light gradient-45deg-green-teal gradient-shadow pulse">Class Registration for {{ dashboard.getSemester }}</a>
+                          <a href="{% url 'course_registration' %}" class="btn waves-effect waves-light gradient-45deg-green-teal gradient-shadow pulse">Class Registration for {{ dashboard.getSemester }}</a>
                         {% else %}
-                          Edit
+                          <a href="{% url 'course_registration' %}" class="btn waves-effect waves-light gradient-45deg-amber-amber pulse">edit your desired schedule for {{ dashboard.getSemester }}</a>
                         {% endif %}
                       </li>
                       {% for cnr, value in dashboard.getPreferredCourses %}
