@@ -69,7 +69,7 @@ class CourseDetail(APIView):
 	"""
 	def get_object(self, pk):
 		try:
-			return CourseModel.objects.get(crn=pk)
+			return CourseModel.objects.get(cnr=pk)
 		except CourseModel.DoesNotExist:
 			raise Http404()
 
