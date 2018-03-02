@@ -31,7 +31,10 @@
     {% block imports %}{% endblock %}
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="{% static 'vendors/perfect-scrollbar/perfect-scrollbar.css' %}" type="text/css" rel="stylesheet">
-    <link href="{% static 'vendors/flag-icon/css/flag-icon.min.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'vendors/sweetalert/dist/sweetalert.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'vendors/flag-icon/css/flag-icon.min.css' %}" type="text/css" rel="stylesheet">    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="{% static 'vendors/jquery-3.2.1.min.js' %}"></script>
   </head>
   {% block theme %}{% endblock %}
     <!-- Start Page Loading -->
@@ -49,12 +52,12 @@
         Scripts
     ================================================ 
     -->
-    <!-- jQuery Library -->
-    <script type="text/javascript" src="{% static 'vendors/jquery-3.2.1.min.js' %}"></script>
     <!--materialize js-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="{% static 'vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <!--sweetalert-->
+    <script type="text/javascript" src="{% static 'vendors/sweetalert/dist/sweetalert.min.js' %}"></script>
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
     <!--custom-script.js - Add your own theme custom JS-->

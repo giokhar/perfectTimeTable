@@ -26,6 +26,8 @@ def dashboard_view(request):
 	if request.get_full_path() == "/dashboard/edit/":
 		editable = True
 
+	list(messages.get_messages(request))
+
 	return render(request, 'dashboard.html', {"dashboard":dashboard, "editable":editable})
 
 def dashboard_update(request):
