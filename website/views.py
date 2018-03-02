@@ -44,7 +44,7 @@ def dashboard_update(request):
 																							major		= major)
 
 	if student:
-		messages.success(request, 'Successfully Updated !')
+		messages.add_message(request, messages.SUCCESS, 'Successfully Updated !')
 
 	return redirect('dashboard')
 
@@ -95,6 +95,9 @@ def register_view(request):
 		new_student.save()
 
 		login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
+		messages.add_message(request, messages.INFO, 'You Are Successfully Registered !')
+
 		return redirect('dashboard')
 
 	return render(request, 'register.html', {"form": form})
