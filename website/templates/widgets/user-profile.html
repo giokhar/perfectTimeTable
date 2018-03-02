@@ -6,7 +6,7 @@
                         </div>
                         <div class="card-content">
                           <img src="{% static 'images/avatar/avatar-7.png' %}" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1">
-                          <a href="{% url 'dashboard' %}" class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
+                          <a href="{% url 'dashboard_edit' %}" class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right">
                             <i class="material-icons">edit</i>
                           </a>
                           <h5 class="card-title activator grey-text text-darken-4">Firstname: <b>{{ dashboard.getFirstName.upper }}</b>  <br>Lastname: <b>{{ dashboard.getLastName.upper }}</b></h5>

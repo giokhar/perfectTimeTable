@@ -1,14 +1,16 @@
 from django.db import connection
 from random import randrange
 import json
+from urllib.request import urlopen
 
 class Dashboard(object):
 
-	def __init__(self, user):
+	def __init__(self, request):
 
-		self.user = user
-		self.email = user.email
-		self.status = user.is_staff
+		self.request 	= request
+		self.user 		= request.user
+		self.email 		= request.user.email
+		self.status 	= request.user.is_staff
 	
 	def isAdmin(self):
 		return self.status
@@ -101,6 +103,23 @@ class Dashboard(object):
 		desc = cursor.description
 		course_dict[course] = [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()][0]
 		return course_dict
+
+	# Additional Functions
+	def getMajors(self):
+
+		url 		= "http://" + self.request.get_host() + "/api/majors/?format=json"
+		jsonurl 	= urlopen(url)
+		data 		= json.loads(jsonurl.read())
+
+		majors_dict = {}
+
+		for i in data:
+			majors_dict[i['department']] = []
+
+		for j in data:
+			majors_dict[j['department']].append(j['title'])
+
+		return majors_dict.items()
 
 
 	def getFinalCourses(self):
