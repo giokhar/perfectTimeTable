@@ -44,8 +44,8 @@ def api(request):
 	q = createCoursesPriorityQueue(lstCourses, lstStudents)
 	scheduller(q)
 
-	# for nextCourse in lstCourses:
-	# 	print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
+	for nextCourse in lstCourses:
+		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
 
 
 	result = data
