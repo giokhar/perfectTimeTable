@@ -60,7 +60,7 @@ def login_view(request):
 	""" log in user controller"""
 
 	# If user is already logged in it should automatically redirect to the dashboard
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		return redirect('dashboard')
 
 	next_page = request.GET.get("next")
@@ -85,7 +85,7 @@ def login_view(request):
 def register_view(request):
 
 	# If user is already logged in it should automatically redirect to the dashboard
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		return redirect('dashboard')
 
 	form = UserRegisterForm(request.POST or None)
@@ -114,7 +114,7 @@ def logout_view(request):
 	""" log out user controller"""
 
 	# If user is already logged in it should automatically redirect to the dashboard
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		logout(request)
 	
 	return redirect('index')
