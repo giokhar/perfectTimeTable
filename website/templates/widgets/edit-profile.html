@@ -11,11 +11,11 @@
                               <form class="col s12">
                                 <div class="row">
                                   <div class="input-field col s6">
-                                    <input id="first_name" type="text">
+                                    <input id="first_name" type="text" value="{{ dashboard.getFirstName }}">
                                     <label for="first_name">First Name</label>
                                   </div>
                                   <div class="input-field col s6">
-                                    <input id="last_name" type="text">
+                                    <input id="last_name" type="text" value="{{ dashboard.getLastName }}">
                                     <label for="last_name">Last Name</label>
                                   </div>
                                 </div>
@@ -23,10 +23,13 @@
                                   <div class="input-field col s12 m6">
                                     <select class="icons" required>
                                       <option value="" disabled selected>Choose your option</option>
-                                      <option value="1" data-icon="{% static 'images/avatar/avatar-1.png' %}" class="left circle">Freshman</option>
-                                      <option value="2" data-icon="{% static 'images/avatar/avatar-2.png' %}" class="left circle">Sophomore</option>
+                                      {% for i, name in dashboard.getClassYears %}
+                                        {% static "images/avatar/avatar-" as startURL %}
+                                          <option {% if dashboard.getClassYearNum == i %} selected {% endif %} value="{{ i }}" data-icon="{{ startURL }}{{ i }}.png" class="left circle">{{ name }}</option>
+                                      {% endfor %}
+                                      <!-- <option value="2" data-icon="{% static 'images/avatar/avatar-2.png' %}" class="left circle">Sophomore</option>
                                       <option value="3" data-icon="{% static 'images/avatar/avatar-3.png' %}" class="left circle">Junior</option>
-                                      <option value="4" data-icon="{% static 'images/avatar/avatar-4.png' %}" class="left circle">Senior</option>
+                                      <option value="4" data-icon="{% static 'images/avatar/avatar-4.png' %}" class="left circle">Senior</option> -->
                                     </select>
                                     <label>Class Year</label>
                                   </div>

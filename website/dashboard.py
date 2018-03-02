@@ -47,6 +47,24 @@ class Dashboard(object):
 			ans = years[ans]
 		return ans
 
+	def getClassYearNum(self):
+		"""
+		Class year number for the edit form
+		"""
+		return self.getStudent()['class_year'] or 1
+
+	def getClassYears(self):
+		"""
+		List Classyear Names in the edit form
+		"""
+		class_years = ["", "Freshman", "Sophomore", "Junior", "Senior"]
+		class_dict = {}
+
+		for i in [1,2,3,4]:
+			class_dict[i] = class_years[i]
+
+		return class_dict.items()
+
 	def getMajor(self):
 		major = self.getStudent()['major'] or "n/a"
 		return major
