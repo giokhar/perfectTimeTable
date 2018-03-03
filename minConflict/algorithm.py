@@ -22,7 +22,7 @@ from minConflict.helper import *
 # lstCourses.append(C8)
 # lstCourses.append(C9)
 
-# conflictDict = createCoursesConflictDict(lstCourses)
+conflictDict = createCoursesConflictDict(lstCourses) 
 #_______________________________________________________#
 
 def isAvailableAt(nextCourse, nextHour, nextDay):

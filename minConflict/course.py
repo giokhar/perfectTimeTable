@@ -27,6 +27,9 @@ class Course():
 		except:
 			self.timeConflictDict[nextCourseNumber] = 1
 
+	def getID(self):
+		return self.ID
+
 	def getFrequency(self):
 		return self.frequency
 
@@ -66,9 +69,6 @@ class Course():
 	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
-
-	def setImportanceIndex(self, weight):
-		self.importanceIndex = weight
 
 	def setSchedule(self, schedule):
 		self.finalSchedule = schedule

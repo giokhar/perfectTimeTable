@@ -41,12 +41,10 @@ def api(request):
 			my_courses = student['preferred_courses'].split(",")[:-1]
 
 			for course in my_courses:
-				#one_course_data
-				o_c_d = getData(request, "courses/"+course)
-				print(o_c_d)
-				one_course = Course(o_c_d['cnr'], o_c_d['course_number'], o_c_d['title'], o_c_d['duration'], o_c_d['frequency'], o_c_d['professor'], o_c_d['level'], o_c_d['num_enrolled'])
-
-				pref_courses.append(one_course)
+				
+				for that_course in coursesLst:
+					if that_course.getID() == int(course):
+						pref_courses.append(that_course)
 
 			oneStudent = Student(student['id'], student['firstname'], student['lastname'], student['class_year'], student['major'], pref_courses)
 
