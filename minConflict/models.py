@@ -31,7 +31,7 @@ class Course(models.Model):
 
 
 	def __str__(self): # Value that we see in DJANGO ADMIN
-		return self.course_number + " - " + self.title + "(CRN: " + str(self.crn) + ") - " + self.professor  
+		return self.course_number + " - " + self.title + "(CRN: " + str(self.cnr) + ") - " + self.professor  
 
 	class Meta:
 		db_table = "courses" # Table name in DB
