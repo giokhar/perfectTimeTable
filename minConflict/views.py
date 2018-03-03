@@ -10,6 +10,7 @@ from rest_framework import status
 from minConflict.serializers import *
 # import my algorithm
 from minConflict.algorithm import *
+
 from urllib.request import urlopen
 import json
 
@@ -29,7 +30,7 @@ def api(request):
 	coursesLst = []
 		
 	for course in coursesData:
-		one_course = Course(course['cnr'], course['course_number'], course['title'], course['duration'], course['frequency'], course['professor'], course['level'], 0)
+		one_course = Course(course['cnr'], course['course_number'], course['title'], course['duration'], course['frequency'], course['professor'], course['level'], course['num_enrolled'])
 		coursesLst.append(one_course)
 
 	for student in studentData:
@@ -42,17 +43,20 @@ def api(request):
 			for course in my_courses:
 				#one_course_data
 				o_c_d = getData(request, "courses/"+course)
-				one_course = Course(o_c_d['cnr'], o_c_d['course_number'], o_c_d['title'], o_c_d['duration'], o_c_d['frequency'], o_c_d['professor'], o_c_d['level'], 0)#num enrolled could be changed, curretly 0
-				
+				print(o_c_d)
+				one_course = Course(o_c_d['cnr'], o_c_d['course_number'], o_c_d['title'], o_c_d['duration'], o_c_d['frequency'], o_c_d['professor'], o_c_d['level'], o_c_d['num_enrolled'])
+
 				pref_courses.append(one_course)
 
 			oneStudent = Student(student['id'], student['firstname'], student['lastname'], student['class_year'], student['major'], pref_courses)
 
-	# q = createCoursesPriorityQueue(lstCourses, lstStudents)
-	# scheduller(q)
+			studentLst.append(oneStudent)
 
-	# for nextCourse in lstCourses:
-	# 	print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
+	q = createCoursesPriorityQueue(coursesLst, studentLst)
+	scheduller(q)
+
+	for nextCourse in coursesLst:
+		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
 
 
 	result = studentData

@@ -9,10 +9,13 @@ def createCoursesPriorityQueue(lstCourses, lstStudents):
 	for nextStudent in lstStudents:
 		weight = 10
 		for nextCourse in nextStudent.getPreferredCourses():
-			nextCourse.incrementImportanceIndex(weight)
+			nextCourse.setImportanceIndex(5)
+			# nextCourse.incrementImportanceIndex(weight)
 			weight -= 1
 
 	coursesPriorityQueue = []
+	for nextCourse in lstCourses:
+		print(nextCourse.getTitle(), "_______", nextCourse.getImportanceIndex())
 	for nextCourse in lstCourses:
 		#100 l = 1.25, 200 = 1.50, 300 = 1.75, 400 = 2
 		levelImportanceIndex = 1 + nextCourse.getLevel()/4
