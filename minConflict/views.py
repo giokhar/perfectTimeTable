@@ -49,9 +49,9 @@ def api(request):
 			oneStudent = Student(student['id'], student['firstname'], student['lastname'], student['class_year'], student['major'], pref_courses)
 
 			studentLst.append(oneStudent)
-
+	conflictDict = createCoursesConflictDict(coursesLst) 
 	q = createCoursesPriorityQueue(coursesLst, studentLst)
-	scheduller(q)
+	scheduller(q, conflictDict)
 
 	for nextCourse in coursesLst:
 		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())

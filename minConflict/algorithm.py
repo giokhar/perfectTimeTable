@@ -1,29 +1,5 @@
 # from data import data, pretty_data
 from minConflict.helper import *
-#-------------------------------------------------------#
-# C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
-# C2 = Course("ID", 12, "C2", 1, 2, "ajika chavana", 2, 3)
-# C3 = Course("ID", 13, "C3", 1, 2, "giorga mavani", 2, 3)
-# C4 = Course("ID", 14, "C4", 1, 2, "giorga mavani", 2, 3)
-# C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
-# C6 = Course("ID", 15, "C6", 1, 2, "ajit qvartskhava", 2, 3)
-# C7 = Course("ID", 15, "C7", 1, 2, "ajit", 2, 3)
-# C8 = Course("ID", 15, "C8", 1, 2, "ajit", 2, 3)
-# C9 = Course("ID", 15, "C9", 1, 2, "ajit", 2, 3)
-
-# lstCourses = []
-# lstCourses.append(C1)
-# lstCourses.append(C2)
-# lstCourses.append(C3)
-# lstCourses.append(C4)
-# lstCourses.append(C5)
-# lstCourses.append(C6)
-# lstCourses.append(C7)
-# lstCourses.append(C8)
-# lstCourses.append(C9)
-
-conflictDict = createCoursesConflictDict(lstCourses) 
-#_______________________________________________________#
 
 def isAvailableAt(nextCourse, nextHour, nextDay):
 	return not (nextDay, nextHour) in nextCourse.getNotAvailableAtList()
@@ -37,7 +13,7 @@ def isRecommendedAt(nextCourse, nextHour, nextDay, iterationN):
 def isDoneSchedulling(course):
 	return len(course.getSchedule()) == course.getFrequency()
 
-def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
+def addDateToCourseSchedulle(nextCourse, nextDay, nextHour, conflictDict):
 	nextCourse.addNewDateInSchedule((nextDay, nextHour))
 	#______Fills in notAvailableAtList for the courses that are taught by same proffessor.
 	sameProffCourses = conflictDict[nextCourse.getProffessor()] 
@@ -48,23 +24,23 @@ def addDateToCourseSchedulle(nextCourse, nextDay, nextHour):
 	for course, weight in stTimeConflictDict:
 		course.addNotRecommendedTime((weight, (nextDay, nextHour)))
 
-def chooseHour(nextCourse, nextDay, iterationN):
-	for nextHour in range(8,15):
+def chooseHour(nextCourse, nextDay, iterationN, conflictDict):
+	for nextHour in range(8,9):
 		if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
-			addDateToCourseSchedulle(nextCourse, nextDay, nextHour)
+			addDateToCourseSchedulle(nextCourse, nextDay, nextHour, conflictDict)
 			return
 
  
-def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN):
+def scheduleNextCourse(nextCourse, nextDaysTuple, iterationN, conflictDict):
 	for nextDay in nextDaysTuple:
-		chooseHour(nextCourse, nextDay, iterationN)
+		chooseHour(nextCourse, nextDay, iterationN, conflictDict)
 		if isDoneSchedulling(nextCourse):
 			return True
 
 	if not isDoneSchedulling(nextCourse): 
 		return False
 
-def scheduller(coursesPriorityQueue):
+def scheduller(coursesPriorityQueue, conflictDict):
 	possWeekList = [('M', 'T', 'W', 'F'), ('M', 'W', 'F'),('M', 'R'), ('T', 'R'), ('T', 'F'), ('W', 'R'), ('W'), ('R')]
 
 	while len(coursesPriorityQueue) != 0:
@@ -81,7 +57,7 @@ def scheduller(coursesPriorityQueue):
 				nextCourse.resetSchedule()
 
 				if nextCourse.getFrequency() == len(nextDaysTuple):
-					done = scheduleNextCourse(nextCourse, nextDaysTuple, iterationN)
+					done = scheduleNextCourse(nextCourse, nextDaysTuple, iterationN, conflictDict)
 					if done: break
 
 			iterationN += 1
