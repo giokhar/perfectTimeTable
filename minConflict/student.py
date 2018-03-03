@@ -3,10 +3,10 @@ Description:
 '''
 
 class Student():
-	def __init__(self, ID, studentId, firstName, lastName, year, major, preferredCourses):
+	def __init__(self, ID, firstName, lastName, year, major, preferredCourses):
 		
 		self.ID = ID,
-		self.studentId = studentId
+		# self.studentId = studentId could be used further
 		self.firstName = firstName
 		self.lastName = lastName
 		self.year = year # class year

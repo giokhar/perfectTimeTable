@@ -10,45 +10,52 @@ from rest_framework import status
 from minConflict.serializers import *
 # import my algorithm
 from minConflict.algorithm import *
+from urllib.request import urlopen
 import json
+
+def getData(request, typeOf):
+	url 		= "http://" + request.get_host() + "/api/" + typeOf +"/?format=json"
+	jsonurl 	= urlopen(url)
+	data		= json.loads(jsonurl.read())
+	return data
+
 
 def api(request):
 
-	url 		= "http://" + request.get_host() + "/api/students/?format=json"
-	jsonurl 	= urlopen(url)
-	data 		= json.loads(jsonurl.read())
+	studentData = getData(request, "students")
+	coursesData = getData(request, "courses")
+
+	studentLst = []
+	coursesLst = []
 		
-	S1 = Student("ID", "student_id", "davite", "kvartskhava", 1, "computer science", [C1, C2, C3])
-	S2 = Student("ID", "student_id", "davita", "kvartskhava", 1, "computer science", [C1, C2, C4])
-	S3 = Student("ID", "student_id", "daviti", "kvartskhava", 1, "computer science", [C4, C3, C2])
-	S4 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-	S5 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-	S6 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-	S7 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C6, C2, C3])
-	S8 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C7, C6])
-	S9 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C9, C8, C5])
-	S10 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C9, C8, C5])
+	for course in coursesData:
+		one_course = Course(course['cnr'], course['course_number'], course['title'], course['duration'], course['frequency'], course['professor'], course['level'], 0)
+		coursesLst.append(one_course)
 
-	lstStudents = []
-	lstStudents.append(S1)
-	lstStudents.append(S2)
-	lstStudents.append(S3)
-	lstStudents.append(S4)
-	lstStudents.append(S5)
-	lstStudents.append(S6)
-	lstStudents.append(S7)
-	lstStudents.append(S8)
-	lstStudents.append(S9)
-	lstStudents.append(S10)
+	for student in studentData:
 
-	q = createCoursesPriorityQueue(lstCourses, lstStudents)
-	scheduller(q)
+		pref_courses = []
+		if student['preferred_courses'] != None:
 
-	for nextCourse in lstCourses:
-		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
+			my_courses = student['preferred_courses'].split(",")[:-1]
+
+			for course in my_courses:
+				#one_course_data
+				o_c_d = getData(request, "courses/"+course)
+				one_course = Course(o_c_d['cnr'], o_c_d['course_number'], o_c_d['title'], o_c_d['duration'], o_c_d['frequency'], o_c_d['professor'], o_c_d['level'], 0)#num enrolled could be changed, curretly 0
+				
+				pref_courses.append(one_course)
+
+			oneStudent = Student(student['id'], student['firstname'], student['lastname'], student['class_year'], student['major'], pref_courses)
+
+	# q = createCoursesPriorityQueue(lstCourses, lstStudents)
+	# scheduller(q)
+
+	# for nextCourse in lstCourses:
+	# 	print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
 
 
-	result = data
+	result = studentData
 	return render(request, "index.html", {"result": result})
 
 class MajorList(APIView):

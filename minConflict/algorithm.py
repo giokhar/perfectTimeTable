@@ -1,34 +1,28 @@
 # from data import data, pretty_data
 from minConflict.helper import *
-
-# Import DB
-# from django.db import connection
-
-from urllib.request import urlopen
-import json
 #-------------------------------------------------------#
-C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
-C2 = Course("ID", 12, "C2", 1, 2, "ajika chavana", 2, 3)
-C3 = Course("ID", 13, "C3", 1, 2, "giorga mavani", 2, 3)
-C4 = Course("ID", 14, "C4", 1, 2, "giorga mavani", 2, 3)
-C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
-C6 = Course("ID", 15, "C6", 1, 2, "ajit qvartskhava", 2, 3)
-C7 = Course("ID", 15, "C7", 1, 2, "ajit", 2, 3)
-C8 = Course("ID", 15, "C8", 1, 2, "ajit", 2, 3)
-C9 = Course("ID", 15, "C9", 1, 2, "ajit", 2, 3)
+# C1 = Course("ID", 11, "C1", 1, 3, "ajika chavana", 2, 3)
+# C2 = Course("ID", 12, "C2", 1, 2, "ajika chavana", 2, 3)
+# C3 = Course("ID", 13, "C3", 1, 2, "giorga mavani", 2, 3)
+# C4 = Course("ID", 14, "C4", 1, 2, "giorga mavani", 2, 3)
+# C5 = Course("ID", 15, "C5", 1, 3, "ajit qvartskhava", 2, 3)
+# C6 = Course("ID", 15, "C6", 1, 2, "ajit qvartskhava", 2, 3)
+# C7 = Course("ID", 15, "C7", 1, 2, "ajit", 2, 3)
+# C8 = Course("ID", 15, "C8", 1, 2, "ajit", 2, 3)
+# C9 = Course("ID", 15, "C9", 1, 2, "ajit", 2, 3)
 
-lstCourses = []
-lstCourses.append(C1)
-lstCourses.append(C2)
-lstCourses.append(C3)
-lstCourses.append(C4)
-lstCourses.append(C5)
-lstCourses.append(C6)
-lstCourses.append(C7)
-lstCourses.append(C8)
-lstCourses.append(C9)
+# lstCourses = []
+# lstCourses.append(C1)
+# lstCourses.append(C2)
+# lstCourses.append(C3)
+# lstCourses.append(C4)
+# lstCourses.append(C5)
+# lstCourses.append(C6)
+# lstCourses.append(C7)
+# lstCourses.append(C8)
+# lstCourses.append(C9)
 
-conflictDict = createCoursesConflictDict(lstCourses)
+# conflictDict = createCoursesConflictDict(lstCourses)
 #_______________________________________________________#
 
 def isAvailableAt(nextCourse, nextHour, nextDay):
@@ -91,25 +85,6 @@ def scheduller(coursesPriorityQueue):
 					if done: break
 
 			iterationN += 1
-
-
-
-
-def my_custom_sql():
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM students")
-    row = cursor.fetchone()
-    return row
-
-def getData(request, slug):
-	host 		= "http://" + request.get_host() + "/"
-	my_format 	= "/?format=json"
-	url 		= host + slug + my_format
-
-	jsonurl = urlopen(url)
-	data = json.loads(jsonurl.read())
-
-	return data
 
 
 # if __name__ == '__main__':
