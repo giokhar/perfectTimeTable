@@ -69,10 +69,12 @@
                           <!-- START DATA TABLE -->
                           <!--DataTables example Row grouping-->
                             <div id="row-grouping" class="section">
-                              <h4 class="header">DataTables Row grouping</h4>
+                              <h4 class="header">Registration for {{ dashboard.getSemester }}</h4>
                               <div class="row">
                                 <div class="col s12">
-                                  <p>Although DataTables doesn't have row grouping built-in (picking one of the many methods available would overly limit the DataTables core), it is most certainly possible to give the look and feel of row grouping.</p>
+                                  My Courses:
+                                  
+                                  <div class="courses" id="courses"></div>
                                 </div>
                                 <div class="col s12">
                                   <table id="data-table-row-grouping" class="display" cellspacing="0" width="100%">
@@ -86,6 +88,16 @@
                                         <th>Action</th>
                                       </tr>
                                     </thead>
+                                    <tfoot>
+                                      <tr>
+                                        <th>Course #</th>
+                                        <th>CNR</th>
+                                        <th>Department</th>
+                                        <th>Course Title</th>
+                                        <th>Professor</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </tfoot>
                                     <tbody>
                                       {% for key, value in dashboard.getCourses %}
                                         {% for course in value %}
@@ -95,19 +107,9 @@
                                           <td>{{ key }}</td>
                                           <td>{{ course.title }}</td>
                                           <td>{{ course.professor }}</td>
-                                          <td><button>Add Course</button></td>
-                                        </tr>
-                                        {% endfor %}
-                                      {% endfor %}
-                                      {% for key, value in dashboard.getCourses %}
-                                        {% for course in value %}
-                                        <tr>
-                                          <td><b>{{ course.course_number }}<b></td>
-                                          <td>{{ course.cnr }}</td>
-                                          <td>{{ key }}</td>
-                                          <td>{{ course.title }}</td>
-                                          <td>{{ course.professor }}</td>
-                                          <td><button>Add Course</button></td>
+                                          <td style="text-align: center;">
+                                            <button class="add" value="{{ course.cnr }}">Add Course</button>
+                                          </td>
                                         </tr>
                                         {% endfor %}
                                       {% endfor %}
