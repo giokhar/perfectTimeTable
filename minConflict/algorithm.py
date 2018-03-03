@@ -1,5 +1,9 @@
 # from data import data, pretty_data
 from minConflict.helper import *
+from urllib.request import urlopen
+import json
+
+
 
 def isAvailableAt(nextCourse, nextHour, nextDay):
 	return not (nextDay, nextHour) in nextCourse.getNotAvailableAtList()
@@ -62,34 +66,42 @@ def scheduller(coursesPriorityQueue, conflictDict):
 
 			iterationN += 1
 
+def getData(request, typeOf):
+	url 		= "http://" + request.get_host() + "/api/" + typeOf +"/?format=json"
+	jsonurl 	= urlopen(url)
+	data		= json.loads(jsonurl.read())
+	return data
 
-# if __name__ == '__main__':
+def driver(request):
 
-# 	S1 = Student("ID", "student_id", "davite", "kvartskhava", 1, "computer science", [C1, C2, C3])
-# 	S2 = Student("ID", "student_id", "davita", "kvartskhava", 1, "computer science", [C1, C2, C4])
-# 	S3 = Student("ID", "student_id", "daviti", "kvartskhava", 1, "computer science", [C4, C3, C2])
-# 	S4 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-# 	S5 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-# 	S6 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C1, C5])
-# 	S7 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C6, C2, C3])
-# 	S8 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C4, C7, C6])
-# 	S9 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C9, C8, C5])
-# 	S10 = Student("ID", "student_id", "davito", "kvartskhava", 1, "computer science", [C9, C8, C5])
+	studentData = getData(request, "students")
+	coursesData = getData(request, "courses")
 
-# 	lstStudents = []
-# 	lstStudents.append(S1)
-# 	lstStudents.append(S2)
-# 	lstStudents.append(S3)
-# 	lstStudents.append(S4)
-# 	lstStudents.append(S5)
-# 	lstStudents.append(S6)
-# 	lstStudents.append(S7)
-# 	lstStudents.append(S8)
-# 	lstStudents.append(S9)
-# 	lstStudents.append(S10)
-	
+	studentLst = []
+	coursesLst = []
+		
+	for course in coursesData:
+		one_course = Course(course['cnr'], course['course_number'], course['title'], course['duration'], course['frequency'], course['professor'], course['level'], course['num_enrolled'])
+		coursesLst.append(one_course)
 
-# 	q = createCoursesPriorityQueue(lstCourses, lstStudents)
-# 	scheduller(q)
-# 	for nextCourse in lstCourses:
-# 		print(nextCourse.getTitle(), "---" , nextCourse.getSchedule())
+	for student in studentData:
+
+		pref_courses = []
+		if student['preferred_courses'] != None:
+
+			my_courses = student['preferred_courses'].split(",")[:-1]
+
+			for course in my_courses:
+				
+				for that_course in coursesLst:
+					if that_course.getID() == int(course):
+						pref_courses.append(that_course)
+
+			oneStudent = Student(student['id'], student['firstname'], student['lastname'], student['class_year'], student['major'], pref_courses)
+
+			studentLst.append(oneStudent)
+	conflictDict = createCoursesConflictDict(coursesLst) 
+	q = createCoursesPriorityQueue(coursesLst, studentLst)
+	scheduller(q, conflictDict)
+
+	return coursesLst
