@@ -121,6 +121,22 @@ class Dashboard(object):
 
 		return majors_dict.items()
 
+	def getCourses(self):
+
+		url 		= "http://" + self.request.get_host() + "/api/courses/?format=json"
+		jsonurl 	= urlopen(url)
+		data 		= json.loads(jsonurl.read())
+
+		dept_dict = {}
+		course_dict = {}
+
+		for i in data:
+			dept_dict[i['department']] = []
+
+		for j in data:
+			dept_dict[j['department']].append(j)
+
+		return dept_dict.items()
 
 	def getFinalCourses(self):
 		preferred_courses = self.getStudent()['final_courses'] or "n/a"
