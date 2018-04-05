@@ -1,1 +1,5 @@
-{{ result }}
+<ul>
+{% for course in result %}
+    <li>{{ course.title }} : {{ course.finalSchedule }}</li>
+{% endfor %}
+</ul>
