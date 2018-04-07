@@ -26,7 +26,7 @@
               {% for message in messages %}
                 {% if message.tags == 'info' %}
                 <script type="text/javascript">
-                  $( document ).ready(function() { swal("Congradulations!", "{{ message }}", "success"); });
+                  $( document ).ready(function() { swal("Congratulations!", "{{ message }}", "success"); });
                 </script>
                 {% endif %}
               {% endfor %}

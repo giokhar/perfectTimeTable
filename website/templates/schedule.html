@@ -26,7 +26,7 @@
               {% for message in messages %}
                 {% if message.tags == 'info' %}
                 <script type="text/javascript">
-                  $( document ).ready(function() { swal("Congradulations!", "{{ message }}", "success"); });
+                  $( document ).ready(function() { swal("Congratulations!", "{{ message }}", "success"); });
                 </script>
                 {% endif %}
               {% endfor %}
@@ -36,7 +36,7 @@
                 <div class="col s10 m6 l6">
                   <ol class="breadcrumbs">
                     <li><a href="#">Dashboard</a></li>
-                    <li class="active"><a href="#">Main</a></li>
+                    <li class="active"><a href="#">Registration</a></li>
                   </ol>
                 </div>
                 {% include "widgets/settings-button.html" %}
@@ -50,19 +50,79 @@
               <!-- <p class="caption">A Simple Blank Page to use it for your custome design and elements.</p> -->
                 <div class="row">
                   <!-- START: PROFILE -->
-                    <div class="col s12 m12 l6">
-                      {% if editable %}
-                        {% include "widgets/edit-profile.html" %}
-                      {% else %}
-                        {% include "widgets/user-profile.html" %}
-                      {% endif %}
+                    <div class="col s12 m12 l12">
+                      <center>
+                          <!-- <div class="input-field col s12 m6">
+                            <select name="courses" required>
+                              {% for key, value in dashboard.getCourses %}
+                                <optgroup label="{{ key }}">
+                                  {% for course in value %}
+                                  <option value="{{ course.cnr }}">{{ course.title }}</option>
+                                  {% endfor %}
+                                </optgroup>
+                              {% endfor %}
+                            </select>
+                            <label>Courses</label>
+                          </div>
+                          <input type="submit" value="add"> -->
+
+                          <!-- START DATA TABLE -->
+                          <!--DataTables example Row grouping-->
+                            <div id="row-grouping" class="section">
+                              <h4 class="header">Registration for {{ dashboard.getSemester }}</h4>
+                              <div class="row">
+                                <div class="col s12">
+                                  My Courses:
+                                  
+                                  <div class="courses" id="courses"></div>
+                                </div>
+                                <div class="col s12">
+                                  <table id="data-table-row-grouping" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                      <tr>
+                                        <th>Course #</th>
+                                        <th>CNR</th>
+                                        <th>Department</th>
+                                        <th>Course Title</th>
+                                        <th>Professor</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tfoot>
+                                      <tr>
+                                        <th>Course #</th>
+                                        <th>CNR</th>
+                                        <th>Department</th>
+                                        <th>Course Title</th>
+                                        <th>Professor</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for key, value in dashboard.getCourses %}
+                                        {% for course in value %}
+                                        <tr>
+                                          <td><b>{{ course.course_number }}<b></td>
+                                          <td>{{ course.cnr }}</td>
+                                          <td>{{ key }}</td>
+                                          <td>{{ course.title }}</td>
+                                          <td>{{ course.professor }}</td>
+                                          <td style="text-align: center;">
+                                            <button class="add" value="{{ course.cnr }}">Add Course</button>
+                                          </td>
+                                        </tr>
+                                        {% endfor %}
+                                      {% endfor %}
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                          </div>
+                          <!-- END DATA TABLE -->
+
+                      </center>
                     </div>
                   <!-- END: PROFILE -->
-                  <!-- START: PREFERRED COURSES -->
-                    <div class="col s12 m12 l6">
-                      {% include "widgets/preferred-courses.html" %}
-                    </div>
-                  <!-- END: PREFERRED COURSES -->
                 </div>
               <div class="divider"></div>
             </div>
