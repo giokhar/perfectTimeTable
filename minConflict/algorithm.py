@@ -3,7 +3,8 @@ from minConflict.helper import *
 from urllib.request import urlopen
 import json
 
-
+START_TIME = 8
+END_TIME = 10
 
 def isAvailableAt(nextCourse, nextHour, nextDay):
 	return not (nextDay, nextHour) in nextCourse.getNotAvailableAtList()
@@ -29,7 +30,7 @@ def addDateToCourseSchedulle(nextCourse, nextDay, nextHour, conflictDict):
 		course.addNotRecommendedTime((weight, (nextDay, nextHour)))
 
 def chooseHour(nextCourse, nextDay, iterationN, conflictDict):
-	for nextHour in range(8,9):
+	for nextHour in range(START_TIME, END_TIME):
 		if isAvailableAt(nextCourse, nextHour, nextDay) and isRecommendedAt(nextCourse, nextHour, nextHour, iterationN):
 			addDateToCourseSchedulle(nextCourse, nextDay, nextHour, conflictDict)
 			return

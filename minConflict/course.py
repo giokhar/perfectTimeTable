@@ -66,7 +66,7 @@ class Course():
 		for i in self.notRecommendedAt:
 			newList.append(i[1])
 		return newList
-	#Formulae for importanceIndex: sum / sqrt(numEnrolled)
+	#Formula for importanceIndex: sum / sqrt(numEnrolled)
 	def incrementImportanceIndex(self, weight):
 		self.importanceIndex += weight / math.sqrt(self.numEnrolled)
 
